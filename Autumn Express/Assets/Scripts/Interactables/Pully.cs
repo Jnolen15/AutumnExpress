@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Pully : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Pully : MonoBehaviour
 
     // Private variables
     [SerializeField] private float value;
+    [SerializeField] private UnityEvent triggeredEvent;
     private bool pulled = false;
     private bool touching = false;
     private bool returned = false;
@@ -49,6 +51,11 @@ public class Pully : MonoBehaviour
         }
 
         CalculateValue();
+
+        if (value > 95)
+        {
+            triggeredEvent.Invoke();
+        }
     }
 
     private void OnMouseDown()

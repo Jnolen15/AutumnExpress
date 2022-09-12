@@ -23,7 +23,7 @@ public class SliderKnob : MonoBehaviour
         {
             if (movingUp)
             {
-                if(value < 99.9)
+                if(value < 99)
                 {
                     target = new Vector3(maxDist, transform.localPosition.y, transform.localPosition.z);
                     transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
@@ -33,7 +33,7 @@ public class SliderKnob : MonoBehaviour
                 }
             } else
             {
-                if (value > 0.01)
+                if (value > 1)
                 {
                     target = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
                     transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
