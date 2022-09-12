@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
+    // Public variables
     public Transform contactPoint;
-    public float maxUpAngle;
-    public float maxDownAngle;
+    [HeaderAttribute("Lever goes between 0 and maxAngle")]
+    public float maxAngle;
     public float pullOffset;
     public float speed;
+    public bool vertical;
 
+    // Private variables
+    [SerializeField] private float value;
     private bool movingUp = false;
     private bool touching = false;
     private Quaternion target;
@@ -19,12 +23,14 @@ public class Lever : MonoBehaviour
         if (touching)
         {
             if(movingUp)
-                target = Quaternion.Euler(maxUpAngle, transform.rotation.y, transform.rotation.z);
+                target = Quaternion.Euler(maxAngle, transform.localRotation.y, transform.localRotation.z);
             else
-                target = Quaternion.Euler(maxDownAngle, transform.rotation.y, transform.rotation.z);
+                target = Quaternion.Euler(0, transform.localRotation.y, transform.localRotation.z);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * speed);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, target, Time.deltaTime * speed);
         }
+
+        CalculateValue();
     }
 
     private void OnMouseUp()
@@ -39,7 +45,7 @@ public class Lever : MonoBehaviour
         {
             touching = false;
         } 
-        // If gragged past offset move in direction pulled
+        // If dragged past offset move in direction pulled
         else
         {
             touching = true;
@@ -58,6 +64,16 @@ public class Lever : MonoBehaviour
 
     private float GrabDistance()
     {
-        return (Input.mousePosition.y - GetContactScreenPos().y);
+        if (vertical)
+            return (Input.mousePosition.y - GetContactScreenPos().y);
+        else
+            return (Input.mousePosition.x - GetContactScreenPos().x);
+    }
+
+    private float CalculateValue()
+    {
+        var angle = transform.localRotation.eulerAngles.x;
+        value = (angle * 100) / maxAngle;
+        return value;
     }
 }

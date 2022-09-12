@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Slider : MonoBehaviour
 {
+    // Public variables
     public Transform contactPoint;
     public float maxDist;
-    public float minDist;
     public float pullOffset;
     public float speed;
 
+    // Private variables
+    [SerializeField] private float value;
     private bool movingUp = false;
     private bool touching = false;
     private Vector3 target;
@@ -24,14 +26,12 @@ public class Slider : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
             } else
             {
-                target = new Vector3(minDist, transform.localPosition.y, transform.localPosition.z);
+                target = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
                 transform.position = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
             }
         }
-        else
-        {
-            //transform.position = Vector3.Lerp(transform.localPosition, defaultPos, Time.deltaTime * (speed * 2));
-        }
+
+        CalculateValue();
     }
 
     private void OnMouseDown()
@@ -46,12 +46,10 @@ public class Slider : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        // If Grabbing the contact point, but havn't dragged it farther than the offset, don't move
         if (GrabDistance() < pullOffset && GrabDistance() > -pullOffset)
         {
             touching = false;
         }
-        // If gragged past offset move in direction pulled
         else
         {
             touching = true;
@@ -71,5 +69,12 @@ public class Slider : MonoBehaviour
     private float GrabDistance()
     {
         return (Input.mousePosition.x - GetContactScreenPos().x);
+    }
+
+    private float CalculateValue()
+    {
+        var pos = transform.localPosition.x / maxDist;
+        value = Mathf.Abs(pos) * 100;
+        return value;
     }
 }
