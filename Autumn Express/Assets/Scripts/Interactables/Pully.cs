@@ -34,9 +34,14 @@ public class Pully : MonoBehaviour
 
             if (pulled)
             {
-                target = new Vector3(transform.localPosition.x, maxPullDist, transform.localPosition.z);
-
-                transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
+                if (value < 99.9)
+                {
+                    target = new Vector3(transform.localPosition.x, maxPullDist, transform.localPosition.z);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
+                } else
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, maxPullDist, transform.localPosition.z);
+                }
             }
         } else if (!returned)
         {

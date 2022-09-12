@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slider : MonoBehaviour
+public class SliderKnob : MonoBehaviour
 {
     // Public variables
     public Transform contactPoint;
     public float maxDist;
     public float pullOffset;
     public float speed;
+    public bool horizontal;
 
     // Private variables
     [SerializeField] private float value;
@@ -22,13 +23,27 @@ public class Slider : MonoBehaviour
         {
             if (movingUp)
             {
-                target = new Vector3(maxDist, transform.localPosition.y, transform.localPosition.z);
-                transform.position = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
+                if(value < 99.9)
+                {
+                    target = new Vector3(maxDist, transform.localPosition.y, transform.localPosition.z);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
+                } else
+                {
+                    transform.localPosition = new Vector3(maxDist, transform.localPosition.y, transform.localPosition.z);
+                }
             } else
             {
-                target = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
-                transform.position = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
+                if (value > 0.01)
+                {
+                    target = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * speed);
+                } else
+                {
+                    transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
+                }
             }
+
+            Mathf.Clamp(transform.localPosition.x, 0, maxDist);
         }
 
         CalculateValue();
@@ -68,12 +83,16 @@ public class Slider : MonoBehaviour
 
     private float GrabDistance()
     {
-        return (Input.mousePosition.x - GetContactScreenPos().x);
+        if(horizontal)
+            return (Input.mousePosition.x - GetContactScreenPos().x);
+        else
+            return (Input.mousePosition.y - GetContactScreenPos().y);
     }
 
     private float CalculateValue()
     {
-        var pos = transform.localPosition.x / maxDist;
+        var pos = 0f;
+        pos = transform.localPosition.x / maxDist;
         value = Mathf.Abs(pos) * 100;
         return value;
     }

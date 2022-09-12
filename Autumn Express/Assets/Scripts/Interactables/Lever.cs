@@ -22,12 +22,26 @@ public class Lever : MonoBehaviour
     {
         if (touching)
         {
-            if(movingUp)
-                target = Quaternion.Euler(maxAngle, transform.localRotation.y, transform.localRotation.z);
+            if (movingUp)
+            {
+                if (value > 99)
+                    transform.localRotation = Quaternion.Euler(maxAngle, transform.localRotation.y, transform.localRotation.z);
+                else
+                {
+                    target = Quaternion.Euler(maxAngle, transform.localRotation.y, transform.localRotation.z);
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, target, Time.deltaTime * speed);
+                }
+            }
             else
-                target = Quaternion.Euler(0, transform.localRotation.y, transform.localRotation.z);
-
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, target, Time.deltaTime * speed);
+            {
+                if (value < 1)
+                    transform.localRotation = Quaternion.Euler(0, transform.localRotation.y, transform.localRotation.z);
+                else
+                {
+                    target = Quaternion.Euler(0, transform.localRotation.y, transform.localRotation.z);
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, target, Time.deltaTime * speed);
+                }
+            }
         }
 
         CalculateValue();
