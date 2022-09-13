@@ -6,11 +6,12 @@ public class Lever : MonoBehaviour
 {
     // Public variables
     public Transform contactPoint;
-    [HeaderAttribute("Lever goes between 0 and maxAngle")]
+    [HeaderAttribute("Lever goes between 0 and maxAngle (<=90)")]
     public float maxAngle;
     public float pullOffset;
     public float speed;
     public bool vertical;
+    public bool reversePullDirection;
 
     // Private variables
     [SerializeField] private float value;
@@ -64,10 +65,10 @@ public class Lever : MonoBehaviour
         {
             touching = true;
 
-            if (GrabDistance() > 0) // Pulled up
-                movingUp = true;
-            else if (GrabDistance() < 0) // Pulled down
-                movingUp = false;
+            if (GrabDistance() > 0)
+                movingUp = !reversePullDirection;
+            else if (GrabDistance() < 0)
+                movingUp = reversePullDirection;
         }
     }
 
