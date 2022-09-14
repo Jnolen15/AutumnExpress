@@ -8,12 +8,14 @@ public class CameraLook : MonoBehaviour
     public Transform lookDefault;
     public Transform lookDoor;
     public Transform lookMirror;
+    public Transform lookSettings;
 
     public enum Look
     {
         Default,
         Door,
-        Mirror
+        Mirror,
+        Settings
     }
     public Look look;
 
@@ -25,29 +27,35 @@ public class CameraLook : MonoBehaviour
     {
         if (!moving)
         {
+            // Look at Door (Mouse Right)
             if (Input.mousePosition.x > Screen.width - edgeSize && look != Look.Door)
             {
                 look = Look.Door;
                 StartCoroutine(TransitionLook(lookDoor));
             }
-
+            // Look at Default (Mouse Left)
             if (Input.mousePosition.x < edgeSize && look != Look.Default)
             {
                 look = Look.Default;
                 StartCoroutine(TransitionLook(lookDefault));
             }
-
+            // Look at Mirror (Mouse Up)
             if (Input.mousePosition.y > Screen.height - edgeSize && look != Look.Mirror)
             {
-                Debug.Log("Lookin at mirror");
                 look = Look.Mirror;
                 StartCoroutine(TransitionLook(lookMirror));
             }
-
+            // Look away from Mirror (Mouse Down)
             if (Input.mousePosition.y < edgeSize && look == Look.Mirror)
             {
                 look = Look.Default;
                 StartCoroutine(TransitionLook(lookDefault));
+            }
+            // Look at Settings (Escape Key)
+            if (Input.GetKeyDown(KeyCode.Escape) && look != Look.Settings)
+            {
+                look = Look.Settings;
+                StartCoroutine(TransitionLook(lookSettings));
             }
         }
     }
