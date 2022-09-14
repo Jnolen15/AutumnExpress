@@ -7,27 +7,29 @@ public class DialogueManager : MonoBehaviour
 {
     public Text dlogTextBox;
     public Image dlogBoundBox;
+    public Animator dlogAnimator;
 
     [Header("Timing Variables")]
     public float typingSpeed = 1f;
     public float delayBeforeNextLine = 1f;
 
     private bool isCurrentLineFinished = false;
-
     private IEnumerator currDlogCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        dlogAnimator.SetBool("isDialogueOpen", false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.G))
         {
             Debug.Log("Open dialogue");
+            dlogAnimator.SetBool("isDialogueOpen", true);
         }
         else if (Input.GetKeyDown(KeyCode.H))
         {
@@ -37,12 +39,20 @@ public class DialogueManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.J))
         {
             Debug.Log("Close dialogue");
+            dlogAnimator.SetBool("isDialogueOpen", false);
         }
+        */
     }
 
-    // OpenDialogueBox()
+    public void OpenDialogueBox()
+    {
+        dlogAnimator.SetBool("isDialogueOpen", true);
+    }
 
-    // CloseDialogueBox()
+    public void CloseDialogueBox()
+    {
+        dlogAnimator.SetBool("isDialogueOpen", false);
+    }
 
     public void TypeNewDlogLine(string line)
     {
