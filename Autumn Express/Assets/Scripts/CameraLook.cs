@@ -7,11 +7,13 @@ public class CameraLook : MonoBehaviour
     public Camera mainCamera;
     public Transform lookDefault;
     public Transform lookDoor;
+    public Transform lookMirror;
 
     public enum Look
     {
         Default,
-        Door
+        Door,
+        Mirror
     }
     public Look look;
 
@@ -30,6 +32,19 @@ public class CameraLook : MonoBehaviour
             }
 
             if (Input.mousePosition.x < edgeSize && look != Look.Default)
+            {
+                look = Look.Default;
+                StartCoroutine(TransitionLook(lookDefault));
+            }
+
+            if (Input.mousePosition.y > Screen.height - edgeSize && look != Look.Mirror)
+            {
+                Debug.Log("Lookin at mirror");
+                look = Look.Mirror;
+                StartCoroutine(TransitionLook(lookMirror));
+            }
+
+            if (Input.mousePosition.y < edgeSize && look == Look.Mirror)
             {
                 look = Look.Default;
                 StartCoroutine(TransitionLook(lookDefault));

@@ -12,8 +12,9 @@ public class Pully : MonoBehaviour
     public float speed;
     public bool down;
 
+    public float value;
+
     // Private variables
-    [SerializeField] private float value;
     [SerializeField] private UnityEvent triggeredEvent;
     private bool pulled = false;
     private bool touching = false;

@@ -9,8 +9,9 @@ public class Button : MonoBehaviour
     public Vector3 target;
     public float speed;
 
+    public float value;
+
     // Private variables
-    [SerializeField] private float value;
     [SerializeField] private UnityEvent triggeredEvent;
     private bool pressed = false;
     private float distance;

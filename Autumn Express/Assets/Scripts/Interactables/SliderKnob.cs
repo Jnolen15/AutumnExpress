@@ -11,8 +11,9 @@ public class SliderKnob : MonoBehaviour
     public float speed;
     public bool horizontal;
 
+    public float value;
+
     // Private variables
-    [SerializeField] private float value;
     private bool movingUp = false;
     private bool touching = false;
     private Vector3 target;
