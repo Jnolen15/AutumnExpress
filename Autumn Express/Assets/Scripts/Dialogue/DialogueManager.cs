@@ -52,6 +52,11 @@ public class DialogueManager : MonoBehaviour
                 Debug.Log("Close dialogue");
                 dlogAnimator.SetBool("isDialogueOpen", false);
             }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+                Debug.Log("Skip to end of line");
+                SkipToEndOfLine();
+            }
         }
     }
 
@@ -82,6 +87,11 @@ public class DialogueManager : MonoBehaviour
         // run our coroutine
         currDlogCoroutine = TypeLineCharacters(line);
         StartCoroutine(currDlogCoroutine);
+    }
+
+    public void SkipToEndOfLine()
+    {
+        isCurrentLineFinished = true;
     }
 
     // --- IEnumerators
@@ -120,6 +130,7 @@ public class DialogueManager : MonoBehaviour
             {
                 // line is supposed to be finished, so completely type line and put loop at the end
                 dlogTextBox.text = line;
+                uiReferences.boop.Play();
                 i = line.Length;
             }
         }
