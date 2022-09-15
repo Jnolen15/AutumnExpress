@@ -5,8 +5,13 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public bool testModeEnabled = false;
+
+    [Header("Important References")]
+    public UIReferences uiReferences;
     public Text dlogTextBox;
     public Image dlogBoundBox;
+    public Image dlogHeadshotBox;
     public Animator dlogAnimator;
 
     [Header("Timing Variables")]
@@ -20,33 +25,45 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         dlogAnimator.SetBool("isDialogueOpen", false);
+        dlogHeadshotBox.color = new Color(0, 0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.G))
+        if (testModeEnabled)
         {
-            Debug.Log("Open dialogue");
-            dlogAnimator.SetBool("isDialogueOpen", true);
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Debug.Log("Open dialogue");
+                dlogAnimator.SetBool("isDialogueOpen", true);
+                SetSpeaker();
+                TypeNewDlogLine("woah look at me I'm dialogue");
+
+            }
+            else if (Input.GetKeyDown(KeyCode.H))
+            {
+                Debug.Log("Typing dialogue line");
+                TypeNewDlogLine("woah look at me I'm dialogue but look seriosuly you can see the animal crossing readout");
+                SetSpeaker();
+            }
+            else if (Input.GetKeyDown(KeyCode.J))
+            {
+                Debug.Log("Close dialogue");
+                dlogAnimator.SetBool("isDialogueOpen", false);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("Typing dialogue line");
-            TypeNewDlogLine("woah look at me I'm dialogue");
-        }
-        else if (Input.GetKeyDown(KeyCode.J))
-        {
-            Debug.Log("Close dialogue");
-            dlogAnimator.SetBool("isDialogueOpen", false);
-        }
-        */
     }
 
     public void OpenDialogueBox()
     {
         dlogAnimator.SetBool("isDialogueOpen", true);
+    }
+
+    public void SetSpeaker()
+    {
+        dlogHeadshotBox.color = new Color(1, 1, 1, 1);
+        dlogHeadshotBox.sprite = uiReferences.deerHeadshot;
     }
 
     public void CloseDialogueBox()
@@ -90,9 +107,9 @@ public class DialogueManager : MonoBehaviour
                 dlogTextBox.text += letterArray[i];
 
                 // play typing sfx
-                if (0 == charCount % 2)
+                if (0 == charCount % 2 && letterArray[i] != ' ')
                 {
-                    //playerUIVals.typingSFX.Play();
+                    uiReferences.boop.Play();
                 }
                 charCount++;
 
