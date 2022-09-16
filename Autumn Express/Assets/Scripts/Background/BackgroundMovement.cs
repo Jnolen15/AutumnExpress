@@ -10,63 +10,61 @@ public class BackgroundMovement : MonoBehaviour
     public GameObject bottomDespawner;
 
     //Increase speed of bacground movement
-    public float speedOfBackround;
+    //public float speedOfBackround;
     public float speedOfTram;
 
-    private Vector3 startingPosition;
+    //Getting all of the children
+    public List<GameObject> children = new List<GameObject>();
+
+    //private Vector3 startingPosition;
     private Vector3 endingPosition;
     private Vector3 spawnPosition;
 
     private bool reachend = false;
 
-    private float changingZ;
+    //private float changingZ;
     void Start()
     {
-        startingPosition = transform.position;
+        //startingPosition = transform.position;
         spawnPosition = topSpawner.transform.position;
         endingPosition = bottomDespawner.transform.position;
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            children.Add(gameObject.transform.GetChild(i).gameObject);
+        }
+        Debug.Log(children.Count);
     }
 
     // Update is called once per frame
     void Update()
     {
-        speedOfBackround += speedOfTram * Time.deltaTime;
-
+        foreach (GameObject backgroundObject in children)
+        {
+            float speedOfBackround = speedOfTram * Time.deltaTime;
+            Vector3 startingPosition = backgroundObject.transform.position;
             //transform.position = new Vector3(transform.position.x, transform.position.y, topSpawner.transform.position.z);
             //
-        //}
-        //else if(changingZ != endingPosition.z)
-        //{
-        if (!reachend)
-        {
-            changingZ = Mathf.MoveTowards(startingPosition.z, endingPosition.z, speedOfBackround);
+            //}
+            //else if(changingZ != endingPosition.z)
+            //{
+            float changingZ = 0;
+            if (backgroundObject.transform.position.z != endingPosition.z)
+            {
+                changingZ = Mathf.MoveTowards(startingPosition.z, endingPosition.z, speedOfBackround);
+            }
+            else
+            {
+                changingZ = spawnPosition.z;
+                startingPosition.z = spawnPosition.z;
+                //reachend = true;
+                speedOfBackround = 1;
+            }
+
+
+
+            backgroundObject.transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
         }
-            
-            
-        
-        transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
-        
 
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject == bottomDespawner)
-        {
-            changingZ = spawnPosition.z;
-            startingPosition.z = spawnPosition.z;
-            reachend = true;
-            speedOfBackround = 1;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == bottomDespawner)
-        {
-            reachend = false;
-        }
     }
 
 }
