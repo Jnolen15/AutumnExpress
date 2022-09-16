@@ -21,6 +21,16 @@ public class DialogueManager : MonoBehaviour
     private bool isCurrentLineFinished = false;
     private IEnumerator currDlogCoroutine;
 
+    // enums
+    public enum Speakers
+    {
+        Deer,
+        Scarecrow,
+        Racoon,
+        Frog,
+        Snail
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +47,7 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("Open dialogue");
                 dlogAnimator.SetBool("isDialogueOpen", true);
-                SetSpeaker();
+                SetSpeaker(Speakers.Deer);
                 TypeNewDlogLine("woah look at me I'm dialogue");
 
             }
@@ -45,7 +55,7 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("Typing dialogue line");
                 TypeNewDlogLine("woah look at me I'm dialogue but look seriosuly you can see the animal crossing readout");
-                SetSpeaker();
+                SetSpeaker(Speakers.Frog);
             }
             else if (Input.GetKeyDown(KeyCode.J))
             {
@@ -65,10 +75,30 @@ public class DialogueManager : MonoBehaviour
         dlogAnimator.SetBool("isDialogueOpen", true);
     }
 
-    public void SetSpeaker()
+    public void SetSpeaker(Speakers speaker)
     {
+        // TESTING -------------------------------------- WARNING --------------------- OTHER HEADSHOTS HAVE NOT BEEN ADDED
         dlogHeadshotBox.color = new Color(1, 1, 1, 1);
-        dlogHeadshotBox.sprite = uiReferences.deerHeadshot;
+        if (speaker == Speakers.Deer)
+        {
+            dlogHeadshotBox.sprite = uiReferences.deerHeadshot;
+        }
+        else if (speaker == Speakers.Frog)
+        {
+            dlogHeadshotBox.sprite = uiReferences.frogHeadshot;
+        }
+        else if (speaker == Speakers.Racoon)
+        {
+            
+        }
+        else if (speaker == Speakers.Frog)
+        {
+            
+        }
+        else if (speaker == Speakers.Snail)
+        {
+            
+        }
     }
 
     public void CloseDialogueBox()

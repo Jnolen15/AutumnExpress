@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deerHeadshot: {fileID: 21300000, guid: be7288c95d19af04aaef96d1e3bdddb0, type: 3}
+  frogHeadshot: {fileID: 21300000, guid: 6250a2b370531184eb5ceedada1dc8c4, type: 3}
   boop: {fileID: 453474890216039769}
 --- !u!95 &1117284101350981177
 Animator:
