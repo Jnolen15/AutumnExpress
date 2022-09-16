@@ -9,7 +9,8 @@ public class NPC : MonoBehaviour
     {
         Waiting,
         Moving,
-        Sitting
+        Sitting,
+        Left
     }
     public State state;
 
@@ -23,7 +24,7 @@ public class NPC : MonoBehaviour
     // Sprite animating
     private GameObject sprite;
     private bool stepping = false;
-    private float stepAngle = 5;
+    private float stepAngle = 4;
     private float stepSpeed = 0.7f;
 
     void Start()
@@ -36,7 +37,15 @@ public class NPC : MonoBehaviour
     void Update()
     {
         if (state == State.Waiting)
+        {
             LookTo(GameObject.FindGameObjectWithTag("Tram").transform);
+            if (!stepping)
+            {
+                stepping = true;
+                stepAngle *= -1;
+                StartCoroutine(Step(stepAngle));
+            }
+        }
         else if (state == State.Moving)
         {
             // Animate movement
@@ -128,7 +137,7 @@ public class NPC : MonoBehaviour
         // Height setup
         float hopSpeed = stepSpeed / 2f;
         Vector3 hopStartpos = sprite.transform.localPosition;
-        Vector3 hopMidPos = new Vector3(0, 1, 0);
+        Vector3 hopMidPos = new Vector3(0, 0.6f, 0);
         Vector3 hopEndPos = Vector3.zero;
 
         while (time < stepSpeed)

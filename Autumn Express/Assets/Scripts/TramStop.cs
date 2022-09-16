@@ -10,7 +10,8 @@ public class TramStop : MonoBehaviour
 
     void Start()
     {
-        waitingNPC = Instantiate(waitingNPC, this.transform.position, this.transform.rotation, this.transform);
+        if(waitingNPC != null)
+            waitingNPC = Instantiate(waitingNPC, this.transform.position, this.transform.rotation, this.transform);
     }
 
     // If Tram is detected and its speed is less than 20; Make it stop
@@ -31,7 +32,10 @@ public class TramStop : MonoBehaviour
         Debug.Log("Tram Arrived");
         busArrived = true;
         tram.GetComponentInChildren<TramControl>().MakeStop();
-        SendNPC(tram.GetComponentInChildren<NPCManager>());
+
+        // If NPC is waiting, Send them to tram
+        if (waitingNPC != null)
+            SendNPC(tram.GetComponentInChildren<NPCManager>());
     }
 
     // Gives waiting NPC to NPCManager
