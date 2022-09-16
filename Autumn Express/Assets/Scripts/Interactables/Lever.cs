@@ -12,6 +12,7 @@ public class Lever : MonoBehaviour
     public float speed;
     public bool vertical;
     public bool reversePullDirection;
+    public bool locked;
 
     public float value;
 
@@ -56,21 +57,31 @@ public class Lever : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        // If Grabbing the contact point, but havn't dragged it farther than the offset, don't move
-        if (GrabDistance() < pullOffset && GrabDistance() > -pullOffset)
+        // Don't respond to input if lever is locked
+        if (!locked)
         {
-            touching = false;
-        } 
-        // If dragged past offset move in direction pulled
-        else
-        {
-            touching = true;
+            // If Grabbing the contact point, but havn't dragged it farther than the offset, don't move
+            if (GrabDistance() < pullOffset && GrabDistance() > -pullOffset)
+            {
+                touching = false;
+            }
+            // If dragged past offset move in direction pulled
+            else
+            {
+                touching = true;
 
-            if (GrabDistance() > 0)
-                movingUp = !reversePullDirection;
-            else if (GrabDistance() < 0)
-                movingUp = reversePullDirection;
+                if (GrabDistance() > 0)
+                    movingUp = !reversePullDirection;
+                else if (GrabDistance() < 0)
+                    movingUp = reversePullDirection;
+            }
         }
+    }
+
+    public void SetValue(float val)
+    {
+        value = val;
+        transform.localRotation = Quaternion.Euler((value * maxAngle) / 100, 0, 0);
     }
 
     private Vector3 GetContactScreenPos()

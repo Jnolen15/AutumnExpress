@@ -49,12 +49,14 @@ public class NPC : MonoBehaviour
         }
     }
 
+    // Performs LookAt locked to the Y axis
     private void LookTo(Transform target)
     {
         Vector3 targetPos = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(targetPos, Vector3.up);
     }
 
+    // Adds this NPC to Tram (Not currently called I belive)
     public void AddToTram(GameObject tram)
     {
         tram.GetComponent<NPCManager>().AddNPC(this.gameObject);
@@ -78,6 +80,7 @@ public class NPC : MonoBehaviour
         }
     }
 
+    // Coroutine for WalkPath, Loops through all steps in list calling MoveToPos
     IEnumerator MoveAlongSteps()
     {
         foreach(Transform step in Steps)
@@ -90,12 +93,10 @@ public class NPC : MonoBehaviour
             Debug.Log("Destination Reached");
         }
 
-        Steps.Clear();
-        isWalkingPath = false;
-        state = State.Sitting;
-        Debug.Log("Path Complete");
+        Sit();
     }
 
+    // Coroutine that lerps pos between two steps
     IEnumerator MoveToPos(Transform pos)
     {
         Debug.Log("walking to: " + pos);
@@ -114,6 +115,7 @@ public class NPC : MonoBehaviour
         doneMoving = true;
     }
 
+    // Animates sprite movement
     IEnumerator Step(float angle)
     {
         float time = 0;
@@ -151,5 +153,14 @@ public class NPC : MonoBehaviour
         }
 
         stepping = false;
+    }
+
+    // Clears walking path and Changes state
+    private void Sit()
+    {
+        Steps.Clear();
+        isWalkingPath = false;
+        state = State.Sitting;
+        LookTo(GameObject.FindGameObjectWithTag("Tram").transform);
     }
 }
