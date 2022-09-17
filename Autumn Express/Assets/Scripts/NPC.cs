@@ -9,27 +9,63 @@ public class NPC : MonoBehaviour
     {
         Waiting,
         Moving,
-        Sitting
+        Sitting,
+        Left
     }
     public State state;
 
     public float walkSpeed;
 
     // Private variables
+    // Traversal
     private List<Transform> Steps = new List<Transform>();
     private bool isWalkingPath;
     private bool doneMoving;
+    // Sprite animating
+    private GameObject sprite;
+    private bool stepping = false;
+    private float stepAngle = 4;
+    private float stepSpeed = 0.7f;
 
     void Start()
     {
         state = State.Waiting;
+
+        sprite = transform.GetChild(0).gameObject;
     }
 
     void Update()
     {
-        transform.LookAt(Camera.main.transform.position, Vector3.up);
+        if (state == State.Waiting)
+        {
+            LookTo(GameObject.FindGameObjectWithTag("Tram").transform);
+            if (!stepping)
+            {
+                stepping = true;
+                stepAngle *= -1;
+                StartCoroutine(Step(stepAngle));
+            }
+        }
+        else if (state == State.Moving)
+        {
+            // Animate movement
+            if (!stepping)
+            {
+                stepping = true;
+                stepAngle *= -1;
+                StartCoroutine(Step(stepAngle));
+            }
+        }
     }
 
+    // Performs LookAt locked to the Y axis
+    private void LookTo(Transform target)
+    {
+        Vector3 targetPos = new Vector3(target.position.x, transform.position.y, target.position.z);
+        transform.LookAt(targetPos, Vector3.up);
+    }
+
+    // Adds this NPC to Tram (Not currently called I belive)
     public void AddToTram(GameObject tram)
     {
         tram.GetComponent<NPCManager>().AddNPC(this.gameObject);
@@ -53,23 +89,23 @@ public class NPC : MonoBehaviour
         }
     }
 
+    // Coroutine for WalkPath, Loops through all steps in list calling MoveToPos
     IEnumerator MoveAlongSteps()
     {
         foreach(Transform step in Steps)
         {
             doneMoving = false;
+            LookTo(step);
             StartCoroutine(MoveToPos(step));
             yield return new WaitUntil(() => doneMoving);
 
             Debug.Log("Destination Reached");
         }
 
-        Steps.Clear();
-        isWalkingPath = false;
-        state = State.Sitting;
-        Debug.Log("Path Complete");
+        Sit();
     }
 
+    // Coroutine that lerps pos between two steps
     IEnumerator MoveToPos(Transform pos)
     {
         Debug.Log("walking to: " + pos);
@@ -86,5 +122,54 @@ public class NPC : MonoBehaviour
         }
 
         doneMoving = true;
+    }
+
+    // Animates sprite movement
+    IEnumerator Step(float angle)
+    {
+        float time = 0;
+        float halfTime = 0;
+
+        // Angle setup
+        Quaternion stepStartpos = sprite.transform.localRotation;
+        Quaternion stepEndPos = Quaternion.Euler(0, 0, angle);
+
+        // Height setup
+        float hopSpeed = stepSpeed / 2f;
+        Vector3 hopStartpos = sprite.transform.localPosition;
+        Vector3 hopMidPos = new Vector3(0, 0.6f, 0);
+        Vector3 hopEndPos = Vector3.zero;
+
+        while (time < stepSpeed)
+        {
+            // Lerp angle
+            sprite.transform.localRotation = Quaternion.Lerp(stepStartpos, stepEndPos, time / stepSpeed);
+
+            // Lerp height. First up, then down
+            if (time < hopSpeed)
+            {
+                sprite.transform.localPosition = Vector3.Lerp(hopStartpos, hopMidPos, time / hopSpeed);
+            }
+            else if (halfTime < hopSpeed)
+            {
+                sprite.transform.localPosition = Vector3.Lerp(hopMidPos, hopEndPos, halfTime / hopSpeed);
+                halfTime += Time.deltaTime;
+            }
+
+            // Advance Time
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        stepping = false;
+    }
+
+    // Clears walking path and Changes state
+    private void Sit()
+    {
+        Steps.Clear();
+        isWalkingPath = false;
+        state = State.Sitting;
+        LookTo(GameObject.FindGameObjectWithTag("Tram").transform);
     }
 }

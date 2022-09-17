@@ -18,6 +18,7 @@ public class TramControl : MonoBehaviour
     public SliderKnob soundSlider;
 
     public float speed;
+    public bool isStopped;
     public bool doorIsOpen;
 
     // Wiper stuff
@@ -43,6 +44,7 @@ public class TramControl : MonoBehaviour
         SetVolume("SoundVolume", soundSlider.value / 100);
     }
 
+    // True if door is open, false otherwise
     private bool DoorCheck()
     {
         if (doorLever.value > 80)
@@ -55,6 +57,7 @@ public class TramControl : MonoBehaviour
         }
     }
 
+    // Reduces windshild particles based on wiper activity
     private void RainClear()
     {
         // Rotate wiper's with lever, store wipe rate
@@ -76,6 +79,7 @@ public class TramControl : MonoBehaviour
         parEmission.rateOverTime = particleMod;
     }
 
+    // Adjusts mixer volumes
     public void SetVolume(string type, float vol)
     {
         if(type == "MusicVolume" || type == "SoundVolume")
@@ -89,5 +93,25 @@ public class TramControl : MonoBehaviour
             Debug.LogError("Unknown Mixer Type");
             return;
         }
+    }
+
+    // Sets speed to 0, locks speed and door levers, Sets isStopped true
+    public void MakeStop()
+    {
+        Debug.Log("Made Stop");
+        isStopped = true;
+        speed = 0;
+        speedLever.SetValue(0);
+        speedLever.locked = true;
+    }
+
+    // unlocks speed and door levers, Sets isStopped false
+    public void LeaveStop()
+    {
+        Debug.Log("Can Leave Stop");
+        isStopped = false;
+        speedLever.locked = false;
+        doorLever.SetValue(0);
+        doorLever.locked = false;
     }
 }
