@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899b0c6947bd5924896c2023b82462b7, type: 3}
+  m_Name: Deer Dialogue
+  m_EditorClassIdentifier: 
+  passangerName: 0
+  characterPortraitArt: {fileID: 21300000, guid: be7288c95d19af04aaef96d1e3bdddb0,
+    type: 3}
+  enterDialogue:
+  - Ayo yo what up. its me. the Brook-meister. Nice to meet you conductor
+  - Even tho I'm stepping onto the tram rn, I'm gonna keep talking to test if multiple
+    lines work on the dlog menu
+  mainDialogue:
+  - I'm talking to you as a way to show that the main dialouge system works.
+  - Hopefully that's the case. Otherwise this would get really akward.
+  - Okay that's it lol. Imma stop talking now. At least until I'm at the last stop
+  exitDialogue:
+  - Well that's my stop I guess. I like the cut of your jib dude.
+  - Yeah I know that's a weird phrase to use. Get off my back. See ya.
+  missedStopDialogue:
+  - Wtf dude that was my stop. I guess I'll just. Sit here. Forever.
+  - Wtf dude that was my stop. I guess I'll just. Sit here. Forever.

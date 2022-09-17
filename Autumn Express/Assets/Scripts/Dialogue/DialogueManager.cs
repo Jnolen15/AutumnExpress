@@ -1,170 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public bool testModeEnabled = false;
+    public DialogueDisplayController dlogDisplay;
+    public bool testMode = false; // Right click to open box, left click to play lines
+    public PassangerDialogue testPassengerDialogue;
 
-    [Header("Important References")]
-    public UIReferences uiReferences;
-    public Text dlogTextBox;
-    public Image dlogBoundBox;
-    public Image dlogHeadshotBox;
-    public Animator dlogAnimator;
-
-    [Header("Timing Variables")]
-    public float typingSpeed = 1f;
-    public float delayBeforeNextLine = 1f;
-
-    private bool isCurrentLineFinished = false;
-    private IEnumerator currDlogCoroutine;
-
-    // enums
-    public enum Speakers
+    private ConvoStage currStage;
+    private int currLineNumber;
+    private PassangerDialogue currConvoData;
+    
+    public enum ConvoStage
     {
-        Deer,
-        Scarecrow,
-        Racoon,
-        Frog,
-        Snail
+        Enter,
+        Main,
+        Exit,
+        MissedStop
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        dlogAnimator.SetBool("isDialogueOpen", false);
-        dlogHeadshotBox.color = new Color(0, 0, 0, 0);
+        currConvoData = testPassengerDialogue;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (testModeEnabled)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && testMode)
         {
-            if (Input.GetKeyDown(KeyCode.G))
+            StartConvoStage(ConvoStage.Enter);
+        }
+
+        if (dlogDisplay.getIsDialogueBoxOpen() && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (dlogDisplay.getIsCurrentLineFinished())
             {
-                Debug.Log("Open dialogue");
-                dlogAnimator.SetBool("isDialogueOpen", true);
-                SetSpeaker(Speakers.Deer);
-                TypeNewDlogLine("woah look at me I'm dialogue");
-
-            }
-            else if (Input.GetKeyDown(KeyCode.H))
-            {
-                Debug.Log("Typing dialogue line");
-                TypeNewDlogLine("woah look at me I'm dialogue but look seriosuly you can see the animal crossing readout");
-                SetSpeaker(Speakers.Frog);
-            }
-            else if (Input.GetKeyDown(KeyCode.J))
-            {
-                Debug.Log("Close dialogue");
-                dlogAnimator.SetBool("isDialogueOpen", false);
-            }
-            else if (Input.GetKeyDown(KeyCode.K))
-            {
-                Debug.Log("Skip to end of line");
-                SkipToEndOfLine();
-            }
-        }
-    }
-
-    public void OpenDialogueBox()
-    {
-        dlogAnimator.SetBool("isDialogueOpen", true);
-    }
-
-    public void SetSpeaker(Speakers speaker)
-    {
-        // TESTING -------------------------------------- WARNING --------------------- OTHER HEADSHOTS HAVE NOT BEEN ADDED
-        dlogHeadshotBox.color = new Color(1, 1, 1, 1);
-        if (speaker == Speakers.Deer)
-        {
-            dlogHeadshotBox.sprite = uiReferences.deerHeadshot;
-        }
-        else if (speaker == Speakers.Frog)
-        {
-            dlogHeadshotBox.sprite = uiReferences.frogHeadshot;
-        }
-        else if (speaker == Speakers.Racoon)
-        {
-            
-        }
-        else if (speaker == Speakers.Frog)
-        {
-            
-        }
-        else if (speaker == Speakers.Snail)
-        {
-            
-        }
-    }
-
-    public void CloseDialogueBox()
-    {
-        dlogAnimator.SetBool("isDialogueOpen", false);
-    }
-
-    public void TypeNewDlogLine(string line)
-    {
-        // stop any coroutines currently running so we can run this one
-        if (currDlogCoroutine != null)
-        {
-            StopCoroutine(currDlogCoroutine);
-        }
-
-        // run our coroutine
-        currDlogCoroutine = TypeLineCharacters(line);
-        StartCoroutine(currDlogCoroutine);
-    }
-
-    public void SkipToEndOfLine()
-    {
-        isCurrentLineFinished = true;
-    }
-
-    // --- IEnumerators
-
-    IEnumerator TypeLineCharacters(string line)
-    {
-        isCurrentLineFinished = false;
-
-        // empty the text box
-        dlogTextBox.text = "";
-        int charCount = 0;
-
-        // divide the line up into individual letters
-        char[] letterArray = line.ToCharArray();
-
-        // pause and then add in letters with pauses between each addition
-        yield return new WaitForSecondsRealtime(delayBeforeNextLine);
-        for (int i = 0; i < line.Length; i++)
-        {
-            if (!isCurrentLineFinished)
-            {
-                // add to the textbox letter by letter
-                dlogTextBox.text += letterArray[i];
-
-                // play typing sfx
-                if (0 == charCount % 2 && letterArray[i] != ' ')
+                if (currLineNumber != GetLinesFromStage(currStage).Length - 1)
                 {
-                    uiReferences.boop.Play();
+                    currLineNumber++;
+                    dlogDisplay.TypeNewDlogLine(GetLinesFromStage(currStage)[currLineNumber]);
                 }
-                charCount++;
-
-                // wait before typing next character
-                yield return new WaitForSecondsRealtime(typingSpeed);
+                else
+                {
+                    dlogDisplay.CloseDialogueBox();
+                }
             }
             else
             {
-                // line is supposed to be finished, so completely type line and put loop at the end
-                dlogTextBox.text = line;
-                uiReferences.boop.Play();
-                i = line.Length;
+                dlogDisplay.SkipToEndOfLine();
             }
         }
+    }
 
-        isCurrentLineFinished = true;
+    public void SetAndStartNewConvo(PassangerDialogue convoData)
+    {
+        currConvoData = convoData;
+        currStage = ConvoStage.Enter;
+        currLineNumber = 0;
+        StartConvoStage(ConvoStage.Enter);
+    }
+
+    public void StartConvoStage(ConvoStage stage)
+    {
+        currLineNumber = 0;
+        dlogDisplay.OpenDialogueBox();
+        dlogDisplay.SetSpeakerPortrait(currConvoData.characterPortraitArt);
+
+        if (stage == ConvoStage.Enter)
+        {
+            currStage = ConvoStage.Enter;
+            dlogDisplay.TypeNewDlogLine(currConvoData.enterDialogue[currLineNumber]);
+        }
+        else if (stage == ConvoStage.Main)
+        {
+
+        }
+        else if (stage == ConvoStage.Exit)
+        {
+
+        }
+        else if (stage == ConvoStage.MissedStop)
+        {
+
+        }
+    }
+
+    public string[] GetLinesFromStage(ConvoStage stage)
+    {
+        string[] selectedLineArray;
+
+        if (stage == ConvoStage.Enter)
+        {
+            selectedLineArray = currConvoData.enterDialogue;
+        }
+        else if (stage == ConvoStage.Main)
+        {
+            selectedLineArray = currConvoData.mainDialogue;
+        }
+        else if (stage == ConvoStage.Exit)
+        {
+            selectedLineArray = currConvoData.exitDialogue;
+        }
+        else if (stage == ConvoStage.MissedStop)
+        {
+            selectedLineArray = currConvoData.missedStopDialogue;
+        }
+        else
+        {
+            selectedLineArray = new string[0];
+        }
+
+        return selectedLineArray;
     }
 }

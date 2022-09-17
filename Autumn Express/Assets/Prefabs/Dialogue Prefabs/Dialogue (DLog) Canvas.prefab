@@ -186,7 +186,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -112, y: 0.002449}
-  m_SizeDelta: {x: 910.0576, y: 168.24}
+  m_SizeDelta: {x: 832.169, y: 168.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1117284099534025306
 CanvasRenderer:
@@ -218,7 +218,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 44
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
@@ -228,7 +228,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 1.1
   m_Text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 --- !u!1 &1117284100556923290
 GameObject:
@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 1117284101350981178}
   - component: {fileID: 6541981871586117258}
   - component: {fileID: 1117284101350981177}
+  - component: {fileID: 2139223111}
   m_Layer: 5
   m_Name: Dialogue (DLog) Canvas
   m_TagString: Untagged
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497ee5c7735baa44abea236340136cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testModeEnabled: 1
+  testModeEnabled: 0
   uiReferences: {fileID: 6541981871586117258}
   dlogTextBox: {fileID: 1117284099534025307}
   dlogBoundBox: {fileID: 1117284100556923288}
@@ -465,6 +466,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2139223111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117284101350981175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc745105837e7a439a4d400a7a060bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dlogDisplay: {fileID: 1117284101350981178}
+  testMode: 1
+  testPassengerDialogue: {fileID: 11400000, guid: 80c352f2ffe835645bc89638bb652c45,
+    type: 2}
 --- !u!1 &2324663108135843060
 GameObject:
   m_ObjectHideFlags: 0
