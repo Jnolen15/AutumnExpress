@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BackgroundMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+    [SerializeField] private TramControl tramControl;
     [SerializeField] private GameObject prefab;
     [SerializeField] private int numToInstantiate;
     [SerializeField] private Transform spawnStartPosition;
@@ -18,7 +17,6 @@ public class BackgroundMovement : MonoBehaviour
     //Increase speed of bacground movement
     //public float speedOfBackround;
     public float speedOfTram;
-    public float spawnCollisionCheckRadius;
 
     //Getting all of the children
     public List<GameObject> children = new List<GameObject>();
@@ -33,32 +31,22 @@ public class BackgroundMovement : MonoBehaviour
 
     private void Awake()
     {
-        //Spawn number of background objects between the spawnStart and end
-        List<Vector3> spawns = new List<Vector3>();
+        var distance = spawnStartPosition.position.z - spawnEndPosition.position.z;
+        var space = distance / numToInstantiate;
+
+        Debug.Log("Spawning child every " + space);
+
         for (int i = 0; i < numToInstantiate; i++)
         {
-            bool goodToParent = false;
-            Vector3 randomPoint = new Vector3(Random.Range(spawnStartPosition.position.x, spawnEndPosition.position.x), spawnStartPosition.position.y, Random.Range(spawnStartPosition.position.z, spawnEndPosition.position.z));
-            spawns.Add(randomPoint);
-            foreach (Vector3 tree in spawns)
-            {
-                if (Vector3.Distance(randomPoint, tree) > spawnCollisionCheckRadius)
-                {
-                    goodToParent = true;
-                }
-                    
-            }
+            var z = (space * i) + spawnEndPosition.position.z;
+            var x = Random.Range(spawnStartPosition.position.x, spawnEndPosition.position.x);
+            Vector3 spawnPoint = new Vector3(x, spawnStartPosition.position.y, z);
 
-            
-            if (goodToParent) 
-            {
-                var newTree = Instantiate(prefab, randomPoint, Quaternion.identity);
-                newTree.transform.parent = gameObject.transform;
-            }
-            
-            //currentPos += posOffset;
+            var newTree = Instantiate(prefab, spawnPoint, Quaternion.identity);
+            newTree.transform.parent = gameObject.transform;
         }
     }
+
     void Start()
     {
         //startingPosition = transform.position;
@@ -68,12 +56,16 @@ public class BackgroundMovement : MonoBehaviour
         {
             children.Add(gameObject.transform.GetChild(i).gameObject);
         }
-
-        Debug.Log(children.Count);
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        speedOfTram = (tramControl.speed / 2);
+        
+        ScrollDecorations();
+    }
+
+    private void ScrollDecorations()
     {
         foreach (GameObject backgroundObject in children)
         {
@@ -96,8 +88,6 @@ public class BackgroundMovement : MonoBehaviour
                 //reachend = true;
                 speedOfBackround = 1;
             }
-
-
 
             backgroundObject.transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
         }
