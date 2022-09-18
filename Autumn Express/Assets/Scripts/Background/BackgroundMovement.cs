@@ -38,7 +38,7 @@ public class BackgroundMovement : MonoBehaviour
         for (int i = 0; i < numToInstantiate; i++)
         {
             bool goodToParent = false;
-            Vector3 randomPoint = new Vector3(Random.Range(spawnStartPosition.position.x, spawnEndPosition.position.x), 1, Random.Range(spawnStartPosition.position.z, spawnEndPosition.position.z));
+            Vector3 randomPoint = new Vector3(Random.Range(spawnStartPosition.position.x, spawnEndPosition.position.x), spawnStartPosition.position.y, Random.Range(spawnStartPosition.position.z, spawnEndPosition.position.z));
             spawns.Add(randomPoint);
             foreach (Vector3 tree in spawns)
             {
