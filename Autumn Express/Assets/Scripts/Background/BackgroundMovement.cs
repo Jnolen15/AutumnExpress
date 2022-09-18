@@ -5,6 +5,12 @@ using UnityEngine;
 public class BackgroundMovement : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private int numToInstantiate;
+    [SerializeField] private Transform spawnStartPosition;
+    [SerializeField] private Transform spawnEndPosition;
+
     // Spawners and Despawners
     public GameObject topSpawner;
     public GameObject bottomDespawner;
@@ -12,6 +18,7 @@ public class BackgroundMovement : MonoBehaviour
     //Increase speed of bacground movement
     //public float speedOfBackround;
     public float speedOfTram;
+    public float spawnCollisionCheckRadius;
 
     //Getting all of the children
     public List<GameObject> children = new List<GameObject>();
@@ -23,6 +30,35 @@ public class BackgroundMovement : MonoBehaviour
     private bool reachend = false;
 
     //private float changingZ;
+
+    private void Awake()
+    {
+        //Spawn number of background objects between the spawnStart and end
+        List<Vector3> spawns = new List<Vector3>();
+        for (int i = 0; i < numToInstantiate; i++)
+        {
+            bool goodToParent = false;
+            Vector3 randomPoint = new Vector3(Random.Range(spawnStartPosition.position.x, spawnEndPosition.position.x), 1, Random.Range(spawnStartPosition.position.z, spawnEndPosition.position.z));
+            spawns.Add(randomPoint);
+            foreach (Vector3 tree in spawns)
+            {
+                if (Vector3.Distance(randomPoint, tree) > spawnCollisionCheckRadius)
+                {
+                    goodToParent = true;
+                }
+                    
+            }
+
+            
+            if (goodToParent) 
+            {
+                var newTree = Instantiate(prefab, randomPoint, Quaternion.identity);
+                newTree.transform.parent = gameObject.transform;
+            }
+            
+            //currentPos += posOffset;
+        }
+    }
     void Start()
     {
         //startingPosition = transform.position;
@@ -32,6 +68,7 @@ public class BackgroundMovement : MonoBehaviour
         {
             children.Add(gameObject.transform.GetChild(i).gameObject);
         }
+
         Debug.Log(children.Count);
     }
 
