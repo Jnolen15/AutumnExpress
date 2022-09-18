@@ -16,16 +16,25 @@ public class NPCManager : MonoBehaviour
 
     private bool boardingPassengers = false;
     private bool leavingPassengers = false;
+    private bool doneUnloading = false;
 
     void Update()
     {
-        NPCGetOff();
+        if (tramControl.isStopped)
+        {
+            if (npcLeaving == null)
+                NPCGetOff();
 
-        if (npcBoarding != null && tramControl.isStopped)
-            NPCBoard();
+            if (npcBoarding != null)
+                NPCBoard();
 
-        if (npcLeaving != null && tramControl.isStopped)
-            NPCLeave();
+            if (npcLeaving != null)
+                NPCLeave();
+        }
+
+        // If nobody is leaving or boarding, leave stop
+        if(npcBoarding == null && npcLeaving == null && tramControl.isStopped && doneUnloading)
+            tramControl.LeaveStop();
     }
 
     private void NPCBoard()
@@ -48,16 +57,16 @@ public class NPCManager : MonoBehaviour
             npcScript.WalkPath();
         }
 
-        // Once NPC has sat, clear boarding stuff and call TramControl.leaveStop
+        // Once NPC has sat, clear boarding stuff
         if (boardingPassengers)
         {
             var npcScript = npcBoarding.GetComponent<NPC>();
             if (npcScript.state == NPC.State.Sitting)
             {
-                Debug.Log("NPC is sat, can leave now");
+                Debug.Log("NPC is sat");
                 boardingPassengers = false;
                 npcBoarding = null;
-                tramControl.LeaveStop();
+                //tramControl.LeaveStop();
             }
         }
     }
@@ -71,7 +80,8 @@ public class NPCManager : MonoBehaviour
             tramControl.doorLever.locked = true;
             leavingPassengers = true;
             var npcScript = npcLeaving.GetComponent<NPC>();
-            for(int i = Points.Length-1; i >= 0; i--)
+            NPCList.Remove(npcLeaving);
+            for (int i = Points.Length-1; i >= 0; i--)
             {
                 npcScript.AddStep(Points[i]);
             }
@@ -81,32 +91,47 @@ public class NPCManager : MonoBehaviour
             npcScript.WalkPath();
         }
 
-        // Once NPC has sat, clear boarding stuff and call TramControl.leaveStop
+        // Once NPC has left, clear loading stuff
         if (leavingPassengers)
         {
             var npcScript = npcLeaving.GetComponent<NPC>();
             if (npcScript.state == NPC.State.Sitting)
             {
-                Debug.Log("NPC left, can leave now");
+                Debug.Log("NPC left");
                 leavingPassengers = false;
                 npcLeaving = null;
-                tramControl.LeaveStop();
+                //tramControl.LeaveStop();
             }
         }
     }
 
-    // Adds NPC to list and sets the waiting NPC
+    // Adds NPC to list, sets the waiting NPC, Gives NPC stop to get off at
     public void AddNPC(GameObject npc)
     {
+        Debug.Log("Adding NPC: " + npc);
+        
         NPCList.Add(npc);
 
         npcBoarding = npc;
+
+        var stop = tramControl.stopsVisited + Random.Range(1, 5);
+        npc.GetComponent<NPC>().getOffStop = stop;
     }
 
-    // Picks an NPC to get off the tram (WIP CHANGE LATER, JUST FOR TESTING)
+    // Goes through list of NPCs to find ones getting off stop. Will be called until all NPCs leave (if its their stop)
     private void NPCGetOff()
     {
-        if(NPCList.Count > 0)
-            npcLeaving = NPCList[0];
+        doneUnloading = false;
+
+        foreach (GameObject npc in NPCList)
+        {
+            if(npc.GetComponent<NPC>().getOffStop == tramControl.stopsVisited)
+            {
+                npcLeaving = npc;
+            }
+        }
+
+        if (npcLeaving == null)
+            doneUnloading = true;
     }
 }

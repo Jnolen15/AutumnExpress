@@ -15,6 +15,7 @@ public class NPC : MonoBehaviour
     public State state;
 
     public float walkSpeed;
+    public int getOffStop;
 
     // Private variables
     // Traversal

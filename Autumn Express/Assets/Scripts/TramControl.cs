@@ -18,6 +18,7 @@ public class TramControl : MonoBehaviour
     public SliderKnob soundSlider;
 
     public float speed;
+    public int stopsVisited;
     public bool isStopped;
     public bool doorIsOpen;
 
@@ -101,6 +102,7 @@ public class TramControl : MonoBehaviour
         Debug.Log("Made Stop");
         isStopped = true;
         speed = 0;
+        stopsVisited++;
         speedLever.SetValue(0);
         speedLever.locked = true;
     }
