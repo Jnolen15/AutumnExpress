@@ -45,13 +45,11 @@ public class StopControler : MonoBehaviour
         if (currentStop.transform.position.z != spawnEndPosition.position.z)
         {
             changingZ = Mathf.MoveTowards(startingPosition.z, spawnEndPosition.position.z, speedOfBackround);
+            currentStop.transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
         }
         else
         {
-            changingZ = spawnStartPosition.position.z;
-            startingPosition.z = spawnStartPosition.position.z;
+            Destroy(currentStop);
         }
-
-        currentStop.transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
     }
 }

@@ -26,6 +26,18 @@ public class TramStop : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Tram")
+        {
+            if (!busArrived)
+            {
+                other.GetComponentInChildren<TramControl>().stopsVisited++;
+                Debug.Log("STOP MISSED");
+            }
+        }
+    }
+
     // Call MakeStop in TramControl and SendNPC to NPCManager
     private void TramArrived(GameObject tram)
     {

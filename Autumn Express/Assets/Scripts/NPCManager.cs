@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCManager : MonoBehaviour
 {
     public TramControl tramControl;
+    public StopControler stopControler;
 
     [Header("Points for NPC to walk")]
     [SerializeField] private Transform[] Points;
@@ -18,8 +19,24 @@ public class NPCManager : MonoBehaviour
     private bool leavingPassengers = false;
     private bool doneUnloading = false;
 
+    public float timeToNextStop;
+    public float nextStopTimer = 0;
+
     void Update()
     {
+        // Stop generation timer
+        if (!tramControl.isStopped)
+        {
+            if (nextStopTimer < timeToNextStop) nextStopTimer += Time.deltaTime;
+            else
+            {
+                stopControler.CreateStop();
+                nextStopTimer = 0;
+                Debug.Log("Spawning Stop");
+            }
+        }
+
+        // NPC boarding / leaving
         if (tramControl.isStopped)
         {
             if (npcLeaving == null)
@@ -66,7 +83,6 @@ public class NPCManager : MonoBehaviour
                 Debug.Log("NPC is sat");
                 boardingPassengers = false;
                 npcBoarding = null;
-                //tramControl.LeaveStop();
             }
         }
     }
@@ -86,8 +102,6 @@ public class NPCManager : MonoBehaviour
                 npcScript.AddStep(Points[i]);
             }
 
-            //npcScript.AddStep(Seats[NPCList.Count - 1]);
-
             npcScript.WalkPath();
         }
 
@@ -98,9 +112,9 @@ public class NPCManager : MonoBehaviour
             if (npcScript.state == NPC.State.Sitting)
             {
                 Debug.Log("NPC left");
+                Destroy(npcLeaving); // Proboably replace this with something else
                 leavingPassengers = false;
                 npcLeaving = null;
-                //tramControl.LeaveStop();
             }
         }
     }
@@ -125,7 +139,7 @@ public class NPCManager : MonoBehaviour
 
         foreach (GameObject npc in NPCList)
         {
-            if(npc.GetComponent<NPC>().getOffStop == tramControl.stopsVisited)
+            if(npc.GetComponent<NPC>().getOffStop <= tramControl.stopsVisited)
             {
                 npcLeaving = npc;
             }

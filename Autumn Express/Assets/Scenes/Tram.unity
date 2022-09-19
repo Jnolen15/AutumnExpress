@@ -16973,6 +16973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tramControl: {fileID: 1142797347}
+  stopControler: {fileID: 2025748163}
   Points:
   - {fileID: 456820682}
   - {fileID: 1245279788}
@@ -16987,6 +16988,8 @@ MonoBehaviour:
   NPCList: []
   npcBoarding: {fileID: 0}
   npcLeaving: {fileID: 0}
+  timeToNextStop: 10
+  nextStopTimer: 0
 --- !u!1 &720393306
 GameObject:
   m_ObjectHideFlags: 0
