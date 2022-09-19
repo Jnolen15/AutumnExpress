@@ -33,6 +33,7 @@ public class TramStop : MonoBehaviour
             if (!busArrived)
             {
                 other.GetComponentInChildren<TramControl>().stopsVisited++;
+                other.GetComponentInChildren<NPCManager>().MissedStop();
                 Debug.Log("STOP MISSED");
             }
         }

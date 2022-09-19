@@ -14,6 +14,8 @@ public class NPC : MonoBehaviour
     }
     public State state;
 
+    public PassangerDialogue passangerDialogue;
+    public bool hadConvo;
     public float walkSpeed;
     public int getOffStop;
 

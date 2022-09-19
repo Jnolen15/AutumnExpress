@@ -5275,6 +5275,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1048802071}
     m_Modifications:
+    - target: {fileID: 2139223111, guid: b2672113562c68d4abf137098c9bc0a2, type: 3}
+      propertyPath: testMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1117284101350981175, guid: b2672113562c68d4abf137098c9bc0a2,
         type: 3}
       propertyPath: m_Name
@@ -5283,7 +5287,7 @@ PrefabInstance:
     - target: {fileID: 1117284101350981175, guid: b2672113562c68d4abf137098c9bc0a2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1117284101350981179, guid: b2672113562c68d4abf137098c9bc0a2,
         type: 3}
@@ -16846,6 +16850,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 196408079}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &698449137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2139223111, guid: b2672113562c68d4abf137098c9bc0a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 196408079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc745105837e7a439a4d400a7a060bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &699270518
 GameObject:
   m_ObjectHideFlags: 0
@@ -16973,6 +16989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tramControl: {fileID: 1142797347}
+  dialogueManager: {fileID: 698449137}
   stopControler: {fileID: 2025748163}
   Points:
   - {fileID: 456820682}
@@ -16988,8 +17005,11 @@ MonoBehaviour:
   NPCList: []
   npcBoarding: {fileID: 0}
   npcLeaving: {fileID: 0}
-  timeToNextStop: 10
+  timeToNextStop: 20
   nextStopTimer: 0
+  timeToNextConvo: 5
+  nextConvoTimer: 0
+  hadConvo: 0
 --- !u!1 &720393306
 GameObject:
   m_ObjectHideFlags: 0

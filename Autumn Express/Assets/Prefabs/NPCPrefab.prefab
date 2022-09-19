@@ -127,4 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  passangerDialogue: {fileID: 11400000, guid: 80c352f2ffe835645bc89638bb652c45, type: 2}
   walkSpeed: 2.5
+  getOffStop: 0
