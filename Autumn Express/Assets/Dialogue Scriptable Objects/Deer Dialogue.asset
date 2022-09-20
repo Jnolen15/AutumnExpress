@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Deer Dialogue
   m_EditorClassIdentifier: 
   passangerName: 0
-  characterPortraitArt: {fileID: 21300000, guid: 49d6a09f2f57d99419f4098fba6a9a42,
+  characterPortraitArt: {fileID: 21300000, guid: b3676bbc23bfe3c4a8085e1c87d4d252,
     type: 3}
   enterDialogue:
   - Ayo yo what up. its me. the Brook-meister. Nice to meet you conductor
