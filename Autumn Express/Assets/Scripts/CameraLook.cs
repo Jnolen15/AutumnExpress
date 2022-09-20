@@ -82,4 +82,9 @@ public class CameraLook : MonoBehaviour
 
         moving = false;
     }
+
+    public void MoveCamera(Transform lookto)
+    {
+        StartCoroutine(TransitionLook(lookto));
+    }
 }

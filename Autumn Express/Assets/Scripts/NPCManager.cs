@@ -137,7 +137,6 @@ public class NPCManager : MonoBehaviour
             tramControl.doorLever.locked = true;
             leavingPassengers = true;
             var npcScript = npcLeaving.GetComponent<NPC>();
-            NPCList.Remove(npcLeaving);
             for (int i = Points.Length-1; i >= 0; i--)
             {
                 npcScript.AddStep(Points[i]);
@@ -157,6 +156,7 @@ public class NPCManager : MonoBehaviour
             {
                 Debug.Log("NPC left");
                 Destroy(npcLeaving); // Proboably replace this with something else
+                NPCList.Remove(npcLeaving);
                 leavingPassengers = false;
                 npcLeaving = null;
             }

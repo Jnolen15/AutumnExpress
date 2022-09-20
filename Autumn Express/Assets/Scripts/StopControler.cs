@@ -14,6 +14,10 @@ public class StopControler : MonoBehaviour
     public GameObject currentStop;
     public float speedOfTram;
 
+    private int npcnum;
+    private bool npcRemoved = false;
+    private bool firstStop = true;
+
     private void Start()
     {
         CreateStop();
@@ -24,7 +28,16 @@ public class StopControler : MonoBehaviour
         speedOfTram = (tramControl.speed / 2);
 
         if (currentStop != null)
+        {
+            // Only remove an NPC from the list if it was picked up
+            if (currentStop.GetComponent<TramStop>().npcPickedUp && !npcRemoved)
+            {
+                npcRemoved = true;
+                NPCList.Remove(NPCList[npcnum]);
+            }
+
             ScrollStop();
+        }
     }
 
     public void CreateStop()
@@ -33,14 +46,22 @@ public class StopControler : MonoBehaviour
         {
             var pos = new Vector3(spawnStartPosition.position.x - 10, spawnStartPosition.position.y, spawnStartPosition.position.z);
             currentStop = Instantiate(stopPrefab, pos, Quaternion.identity);
-            
+
             // Spawn NPC MAKE RANDOM IF NOT
-            var rand = Random.Range(0, 11);
-            if (rand > 6)
+            if (NPCList.Count > 0)
             {
-                var npcnum = Random.Range(0, NPCList.Count);
-                currentStop.GetComponent<TramStop>().waitingNPC = NPCList[npcnum];
-                NPCList.Remove(NPCList[npcnum]);
+                var rand = 0;
+                if (firstStop)
+                {
+                    firstStop = false;
+                    rand = 10;
+                } else
+                    rand = Random.Range(0, 11);
+                if (rand > 6)
+                {
+                    npcnum = Random.Range(0, NPCList.Count);
+                    currentStop.GetComponent<TramStop>().waitingNPC = NPCList[npcnum];
+                }
             }
         }
         else
@@ -61,6 +82,7 @@ public class StopControler : MonoBehaviour
         else
         {
             Destroy(currentStop);
+            currentStop = null;
         }
     }
 }

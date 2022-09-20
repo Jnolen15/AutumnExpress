@@ -5,7 +5,7 @@ using UnityEngine;
 public class TramStop : MonoBehaviour
 {
     public GameObject waitingNPC;
-
+    public bool npcPickedUp = false;
     private bool busArrived = false;
 
     void Start()
@@ -63,6 +63,7 @@ public class TramStop : MonoBehaviour
             waitingNPC.transform.SetParent(npcMan.gameObject.transform);
 
             waitingNPC = null;
+            npcPickedUp = true;
         } else
         {
             Debug.LogError("NPCManager script not found");
