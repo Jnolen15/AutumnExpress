@@ -76,8 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd24e8a437200d24882d89067d6cbf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitingNPC: {fileID: 6121296336204190160, guid: 601dc63d7ab832543b0572366c6a0bd6,
-    type: 3}
+  waitingNPC: {fileID: 0}
 --- !u!1 &8690392348120945688
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class NPCManager : MonoBehaviour
 
     [Header("Points for NPC to walk")]
     [SerializeField] private Transform[] Points;
-    [SerializeField] private Transform[] Seats;
     public List<GameObject> NPCList = new List<GameObject>();
 
     public GameObject npcBoarding;
@@ -84,10 +83,11 @@ public class NPCManager : MonoBehaviour
 
         npcBoarding = npc;
 
-        var stop = tramControl.stopsVisited + Random.Range(1, 5);
+        var stop = tramControl.stopsVisited + Random.Range(2, 5);
         npc.GetComponent<NPC>().getOffStop = stop;
     }
 
+    // Board a passenger by assinging a path
     private void NPCBoard()
     {
         // IF there is an NPC boarding and the door is open, assign the NPC a path and send it
@@ -102,8 +102,11 @@ public class NPCManager : MonoBehaviour
                 npcScript.AddStep(point);
             }
 
-            // MAKE THIS BETTER, IT WILL MAKE PEOPLE TO SIT IN THE SAME SEAT SOMETIMES
-            npcScript.AddStep(Seats[NPCList.Count - 1]);
+            var seat = GameObject.Find(npcScript.favoriteSeat).transform;
+            if (seat != null)
+                npcScript.AddStep(seat);
+            else
+                Debug.LogError("Seat not found");
 
             npcScript.WalkPath();
 
@@ -124,6 +127,7 @@ public class NPCManager : MonoBehaviour
         }
     }
 
+    // leave a passenger by assinging a path
     private void NPCLeave()
     {
         // IF there is an NPC leaving and the door is open, assign the NPC a path and send it
@@ -176,21 +180,31 @@ public class NPCManager : MonoBehaviour
             doneUnloading = true;
     }
 
+    // Will bring up dialogue about missing a stop
     public void MissedStop()
     {
-        NPC npcWhoIsUpsetYouMissedTheirStop = null;
+        nextConvoTimer = 0;
+        hadConvo = false;
+        alertedNextStop = false;
+
+        StartCoroutine(MissedStopCoroutine());
+    }
+
+    IEnumerator MissedStopCoroutine()
+    {
         foreach (GameObject npc in NPCList)
         {
+            yield return new WaitUntil(() => !dialogueManager.GetOpen());
+
             if (npc.GetComponent<NPC>().getOffStop <= tramControl.stopsVisited)
             {
-                npcWhoIsUpsetYouMissedTheirStop = npc.GetComponent<NPC>();
+                Debug.Log("NPC Telling you you missed their stop");
+                NPCTalk(npc.GetComponent<NPC>(), DialogueManager.ConvoStage.MissedStop);
             }
         }
-
-        if(npcWhoIsUpsetYouMissedTheirStop != null)
-            NPCTalk(npcWhoIsUpsetYouMissedTheirStop, DialogueManager.ConvoStage.MissedStop);
     }
-    
+
+    // Will bring up dialogue about the next stop for an NPC. Will cycle all npcs this is true for
     IEnumerator NextStop()
     {
         alertedNextStop = true;
