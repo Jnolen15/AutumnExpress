@@ -80,22 +80,6 @@ public class TramControl : MonoBehaviour
         parEmission.rateOverTime = particleMod;
     }
 
-    // Adjusts mixer volumes
-    public void SetVolume(string type, float vol)
-    {
-        if(type == "MusicVolume" || type == "SoundVolume")
-        {
-            if (vol == 0) // It can't be 0
-                vol = 0.0001f;
-            mixer.SetFloat(type, Mathf.Log10(vol) * 20);
-        }
-        else
-        {
-            Debug.LogError("Unknown Mixer Type");
-            return;
-        }
-    }
-
     // Sets speed to 0, locks speed and door levers, Sets isStopped true
     public void MakeStop()
     {
@@ -115,5 +99,33 @@ public class TramControl : MonoBehaviour
         speedLever.locked = false;
         doorLever.SetValue(0);
         doorLever.locked = false;
+    }
+
+    // Adjusts mixer volumes
+    public void SetVolume(string type, float vol)
+    {
+        if (type == "MusicVolume" || type == "SoundVolume")
+        {
+            if (vol == 0) // It can't be 0
+                vol = 0.0001f;
+            mixer.SetFloat(type, Mathf.Log10(vol) * 20);
+        }
+        else
+        {
+            Debug.LogError("Unknown Mixer Type");
+            return;
+        }
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game");
+        Application.Quit();
+    }
+
+    public void ToggleFullscreen()
+    {
+        Debug.Log("Toggling Fullscreen");
+        Screen.fullScreen = !Screen.fullScreen;
     }
 }

@@ -44,6 +44,7 @@ public class Button : MonoBehaviour
         if (value > 95)
         {
             triggeredEvent.Invoke();
+            pressed = false;
         }
     }
 

@@ -342,7 +342,7 @@ PrefabInstance:
     - target: {fileID: 2552967923360385352, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2552967923360385352, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
         type: 3}
@@ -5279,6 +5279,12 @@ PrefabInstance:
       propertyPath: testMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 453474890216039769, guid: b2672113562c68d4abf137098c9bc0a2,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8165244525448496150, guid: 8846918c3a56ddd41a566147fd7bff32,
+        type: 2}
     - target: {fileID: 1117284101350981175, guid: b2672113562c68d4abf137098c9bc0a2,
         type: 3}
       propertyPath: m_Name
@@ -23320,7 +23326,19 @@ MonoBehaviour:
   value: 0
   triggeredEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1142797347}
+        m_TargetAssemblyTypeName: TramControl, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &957469633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23331,12 +23349,12 @@ PrefabInstance:
     - target: {fileID: 2552967923360385348, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
         type: 3}
       propertyPath: m_Name
-      value: SettingsButton(2)
+      value: FullScreenSettingsButton
       objectReference: {fileID: 0}
     - target: {fileID: 2552967923360385352, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2552967923360385352, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
         type: 3}
@@ -23417,6 +23435,26 @@ PrefabInstance:
         type: 3}
       propertyPath: target.z
       value: 0.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552967923360385359, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
+        type: 3}
+      propertyPath: triggeredEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552967923360385359, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
+        type: 3}
+      propertyPath: triggeredEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1142797347}
+    - target: {fileID: 2552967923360385359, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
+        type: 3}
+      propertyPath: triggeredEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleFullscreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552967923360385359, guid: cf8a8f27b6306bf4e9924e445b4c85d1,
+        type: 3}
+      propertyPath: triggeredEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TramControl, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf8a8f27b6306bf4e9924e445b4c85d1, type: 3}
@@ -29273,8 +29311,8 @@ Transform:
   - {fileID: 891607982}
   - {fileID: 1973445099}
   - {fileID: 1133650220}
-  - {fileID: 110111171}
   - {fileID: 957469634}
+  - {fileID: 110111171}
   - {fileID: 799680037}
   - {fileID: 957319104}
   - {fileID: 915027464}

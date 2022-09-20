@@ -94,7 +94,7 @@ public class BackgroundMovement : MonoBehaviour
             //Fade background Objects when nearing the end
             if(Mathf.Abs(backgroundObject.transform.position.z - endingPosition.z) < 150)
             {
-                Debug.Log("approaching End");
+                //Debug.Log("approaching End");
                 forAlpha.a = Mathf.Lerp(backgroundObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color.a, 0, speedOfBackround/50);
             }
 
