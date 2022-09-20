@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StopControler : MonoBehaviour
 {
+    public List<GameObject> NPCList = new List<GameObject>();
+
     [SerializeField] private TramControl tramControl;
     [SerializeField] private GameObject stopPrefab;
     [SerializeField] private Transform spawnStartPosition;
@@ -31,6 +33,15 @@ public class StopControler : MonoBehaviour
         {
             var pos = new Vector3(spawnStartPosition.position.x - 10, spawnStartPosition.position.y, spawnStartPosition.position.z);
             currentStop = Instantiate(stopPrefab, pos, Quaternion.identity);
+            
+            // Spawn NPC MAKE RANDOM IF NOT
+            var rand = Random.Range(0, 11);
+            if (rand > 6)
+            {
+                var npcnum = Random.Range(0, NPCList.Count);
+                currentStop.GetComponent<TramStop>().waitingNPC = NPCList[npcnum];
+                NPCList.Remove(NPCList[npcnum]);
+            }
         }
         else
             Debug.Log("Stop already exists");
@@ -45,13 +56,11 @@ public class StopControler : MonoBehaviour
         if (currentStop.transform.position.z != spawnEndPosition.position.z)
         {
             changingZ = Mathf.MoveTowards(startingPosition.z, spawnEndPosition.position.z, speedOfBackround);
+            currentStop.transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
         }
         else
         {
-            changingZ = spawnStartPosition.position.z;
-            startingPosition.z = spawnStartPosition.position.z;
+            Destroy(currentStop);
         }
-
-        currentStop.transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
     }
 }

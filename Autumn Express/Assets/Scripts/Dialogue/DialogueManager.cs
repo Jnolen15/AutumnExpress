@@ -17,16 +17,15 @@ public class DialogueManager : MonoBehaviour
         Enter,
         Main,
         Exit,
-        MissedStop
+        MissedStop,
+        NextStop
     }
     
-    // Start is called before the first frame update
     void Start()
     {
         currConvoData = testPassengerDialogue;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && testMode)
@@ -60,7 +59,7 @@ public class DialogueManager : MonoBehaviour
         currConvoData = convoData;
         currStage = ConvoStage.Enter;
         currLineNumber = 0;
-        StartConvoStage(ConvoStage.Enter);
+        //StartConvoStage(ConvoStage.Enter);
     }
 
     public void StartConvoStage(ConvoStage stage)
@@ -69,22 +68,28 @@ public class DialogueManager : MonoBehaviour
         dlogDisplay.OpenDialogueBox();
         dlogDisplay.SetSpeakerPortrait(currConvoData.characterPortraitArt);
 
-        if (stage == ConvoStage.Enter)
+        switch (stage)
         {
-            currStage = ConvoStage.Enter;
-            dlogDisplay.TypeNewDlogLine(currConvoData.enterDialogue[currLineNumber]);
-        }
-        else if (stage == ConvoStage.Main)
-        {
-
-        }
-        else if (stage == ConvoStage.Exit)
-        {
-
-        }
-        else if (stage == ConvoStage.MissedStop)
-        {
-
+            case ConvoStage.Enter:
+                currStage = ConvoStage.Enter;
+                dlogDisplay.TypeNewDlogLine(currConvoData.enterDialogue[currLineNumber]);
+                break;
+            case ConvoStage.Main:
+                currStage = ConvoStage.Main;
+                dlogDisplay.TypeNewDlogLine(currConvoData.mainDialogue[currLineNumber]);
+                break;
+            case ConvoStage.Exit:
+                currStage = ConvoStage.Exit;
+                dlogDisplay.TypeNewDlogLine(currConvoData.exitDialogue[currLineNumber]);
+                break;
+            case ConvoStage.MissedStop:
+                currStage = ConvoStage.MissedStop;
+                dlogDisplay.TypeNewDlogLine(currConvoData.missedStopDialogue[currLineNumber]);
+                break;
+            case ConvoStage.NextStop:
+                currStage = ConvoStage.NextStop;
+                dlogDisplay.TypeNewDlogLine(currConvoData.nextStopDialogue[currLineNumber]);
+                break;
         }
     }
 
@@ -108,11 +113,20 @@ public class DialogueManager : MonoBehaviour
         {
             selectedLineArray = currConvoData.missedStopDialogue;
         }
+        else if (stage == ConvoStage.NextStop)
+        {
+            selectedLineArray = currConvoData.nextStopDialogue;
+        }
         else
         {
             selectedLineArray = new string[0];
         }
 
         return selectedLineArray;
+    }
+
+    public bool GetOpen()
+    {
+        return dlogDisplay.getIsDialogueBoxOpen();
     }
 }

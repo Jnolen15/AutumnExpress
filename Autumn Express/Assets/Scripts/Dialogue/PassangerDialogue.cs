@@ -15,4 +15,6 @@ public class PassangerDialogue : ScriptableObject
     public string[] exitDialogue;
     [TextArea]
     public string[] missedStopDialogue;
+    [TextArea]
+    public string[] nextStopDialogue;
 }
