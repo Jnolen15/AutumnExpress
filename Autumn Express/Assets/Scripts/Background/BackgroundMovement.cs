@@ -71,6 +71,7 @@ public class BackgroundMovement : MonoBehaviour
         {
             float speedOfBackround = speedOfTram * Time.deltaTime;
             Vector3 startingPosition = backgroundObject.transform.position;
+            Color forAlpha = backgroundObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
             //transform.position = new Vector3(transform.position.x, transform.position.y, topSpawner.transform.position.z);
             //
             //}
@@ -79,17 +80,26 @@ public class BackgroundMovement : MonoBehaviour
             float changingZ = 0;
             if (backgroundObject.transform.position.z != endingPosition.z)
             {
+                forAlpha.a = Mathf.Lerp(backgroundObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color.a, 1, speedOfBackround / 10);
                 changingZ = Mathf.MoveTowards(startingPosition.z, endingPosition.z, speedOfBackround);
             }
             else
             {
+                forAlpha.a = 0;
                 changingZ = spawnPosition.z;
                 startingPosition.z = spawnPosition.z;
                 //reachend = true;
                 speedOfBackround = 1;
             }
+            //Fade background Objects when nearing the end
+            if(Mathf.Abs(backgroundObject.transform.position.z - endingPosition.z) < 150)
+            {
+                Debug.Log("approaching End");
+                forAlpha.a = Mathf.Lerp(backgroundObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color.a, 0, speedOfBackround/50);
+            }
 
             backgroundObject.transform.position = new Vector3(startingPosition.x, startingPosition.y, changingZ);
+            backgroundObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = forAlpha;
         }
 
     }
