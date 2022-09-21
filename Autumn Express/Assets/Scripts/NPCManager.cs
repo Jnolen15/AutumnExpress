@@ -36,7 +36,8 @@ public class NPCManager : MonoBehaviour
             else
             {
                 stopControler.CreateStop();
-                nextStopTimer = 0;
+                var randMod = Random.Range(0, -10);
+                nextStopTimer = 0 + randMod;
                 Debug.Log("Spawning Stop");
             }
 

@@ -57,7 +57,7 @@ public class StopControler : MonoBehaviour
                     rand = 10;
                 } else
                     rand = Random.Range(0, 11);
-                if (rand > 6)
+                if (rand > 5)
                 {
                     npcnum = Random.Range(0, NPCList.Count);
                     currentStop.GetComponent<TramStop>().waitingNPC = NPCList[npcnum];

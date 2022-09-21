@@ -25,7 +25,7 @@ public class TramControl : MonoBehaviour
     // Wiper stuff
     [SerializeField] private float wipeRate;
     private float prevRotation;
-    private float maxParticles = 60;
+    private float maxParticles = 80;
     [SerializeField] private float particleMod = 0;
 
     void Update()
@@ -89,6 +89,7 @@ public class TramControl : MonoBehaviour
         stopsVisited++;
         speedLever.SetValue(0);
         speedLever.locked = true;
+        doorLever.locked = false;
     }
 
     // unlocks speed and door levers, Sets isStopped false
@@ -98,7 +99,7 @@ public class TramControl : MonoBehaviour
         isStopped = false;
         speedLever.locked = false;
         doorLever.SetValue(0);
-        doorLever.locked = false;
+        doorLever.locked = true;
     }
 
     // Adjusts mixer volumes
