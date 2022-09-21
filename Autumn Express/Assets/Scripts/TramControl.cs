@@ -13,7 +13,8 @@ public class TramControl : MonoBehaviour
     public Lever wwLever;
     public GameObject wiper;
     public GameObject wiperTwo;
-    public ParticleSystem windshieldParticles;
+    public ParticleSystem windshieldParticlesLeft;
+    public ParticleSystem windshieldParticlesRight;
     public SliderKnob musicSlider;
     public SliderKnob soundSlider;
 
@@ -23,10 +24,10 @@ public class TramControl : MonoBehaviour
     public bool doorIsOpen;
 
     // Wiper stuff
-    [SerializeField] private float wipeRate;
+    private float wipeRate;
     private float prevRotation;
-    private float maxParticles = 80;
-    [SerializeField] private float particleMod = 0;
+    private float maxParticles = 60;
+    private float particleMod = 0;
 
     void Update()
     {
@@ -35,7 +36,7 @@ public class TramControl : MonoBehaviour
 
         // Door
         doorIsOpen = DoorCheck();
-        door.transform.rotation = Quaternion.Euler(door.transform.rotation.x, doorLever.value/1.25f, door.transform.rotation.z);
+        door.transform.rotation = Quaternion.Euler(door.transform.rotation.x, doorLever.value, door.transform.rotation.z);
 
         // Windsheild Wiper
         RainClear();
@@ -62,9 +63,9 @@ public class TramControl : MonoBehaviour
     private void RainClear()
     {
         // Rotate wiper's with lever, store wipe rate
-        wiper.transform.rotation = Quaternion.Euler(wiper.transform.rotation.x, wiper.transform.rotation.y, -(wwLever.value * 2) - 90);
-        wiperTwo.transform.rotation = Quaternion.Euler(wiperTwo.transform.rotation.x, wiperTwo.transform.rotation.y, -(wwLever.value * 2) - 90);
-        if(wipeRate < 600)
+        wiper.transform.rotation = Quaternion.Euler(0, -16.37f, -(wwLever.value * 1.6f) - 100);
+        wiperTwo.transform.rotation = Quaternion.Euler(0, 16.37f, -(wwLever.value * 1.6f) - 100);
+        if(wipeRate < 700)
             wipeRate += Mathf.Abs(wwLever.value - prevRotation);
         prevRotation = wwLever.value;
 
@@ -73,11 +74,13 @@ public class TramControl : MonoBehaviour
             wipeRate -= (Time.deltaTime*10);
 
         // Reduce number of particles based on wipe rate
-        var parEmission = windshieldParticles.emission;
+        var parEmissionLeft = windshieldParticlesLeft.emission;
+        var parEmissionRight = windshieldParticlesRight.emission;
         particleMod = maxParticles - (wipeRate / 10);
         if (particleMod < 0)
             particleMod = 0;
-        parEmission.rateOverTime = particleMod;
+        parEmissionLeft.rateOverTime = particleMod;
+        parEmissionRight.rateOverTime = particleMod;
     }
 
     // Sets speed to 0, locks speed and door levers, Sets isStopped true

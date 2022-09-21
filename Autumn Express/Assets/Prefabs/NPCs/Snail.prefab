@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  favoriteSeat: 4
+  favoriteSeat: Snail
   passangerDialogue: {fileID: 11400000, guid: aea263ab215991243a32d7f7c850f690, type: 2}
   hadConvo: 0
   walkSpeed: 2.5

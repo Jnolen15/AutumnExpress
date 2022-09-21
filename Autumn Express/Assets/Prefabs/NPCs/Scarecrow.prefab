@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  favoriteSeat: 3
+  favoriteSeat: Scarecrow
   passangerDialogue: {fileID: 11400000, guid: 877586f21415769429f6da9ce5b3de36, type: 2}
   hadConvo: 0
   walkSpeed: 2.5

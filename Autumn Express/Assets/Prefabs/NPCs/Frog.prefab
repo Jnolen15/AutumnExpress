@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  favoriteSeat: 1
+  favoriteSeat: Frog
   passangerDialogue: {fileID: 11400000, guid: f2d2abed4787ae345a18d029f2ddb4bc, type: 2}
   hadConvo: 0
   walkSpeed: 2.5
