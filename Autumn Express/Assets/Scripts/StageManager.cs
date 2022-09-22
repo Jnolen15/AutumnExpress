@@ -5,6 +5,7 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public GameObject MainMenu;
+    public GameObject HTPMenu;
     public GameObject EndMenu;
     public CameraLook camControl;
     public Transform defaultCamPos;
@@ -43,5 +44,17 @@ public class StageManager : MonoBehaviour
         gameEnded = true;
         EndMenu.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    public void ShowTutorial()
+    {
+        MainMenu.SetActive(false);
+        HTPMenu.SetActive(true);
+    }
+
+    public void HideTutorial()
+    {
+        MainMenu.SetActive(true);
+        HTPMenu.SetActive(false);
     }
 }
