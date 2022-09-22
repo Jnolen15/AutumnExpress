@@ -17,11 +17,14 @@ public class TramControl : MonoBehaviour
     public ParticleSystem windshieldParticlesRight;
     public SliderKnob musicSlider;
     public SliderKnob soundSlider;
+    public AudioClip songOne;
+    public AudioClip songTwo;
 
     public float speed;
     public int stopsVisited;
     public bool isStopped;
     public bool doorIsOpen;
+    private bool songChange;
 
     // Wiper stuff
     private float wipeRate;
@@ -119,6 +122,21 @@ public class TramControl : MonoBehaviour
             Debug.LogError("Unknown Mixer Type");
             return;
         }
+    }
+
+    public void ChangeSong(AudioSource source)
+    {
+        if (songChange)
+        {
+            source.clip = songOne;
+            songChange = false;
+        } else
+        {
+            source.clip = songTwo;
+            songChange = true;
+        }
+
+        source.Play();
     }
 
     public void QuitGame()
