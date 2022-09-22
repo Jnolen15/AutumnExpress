@@ -15,6 +15,7 @@ public class SliderKnob : MonoBehaviour
 
     // Private variables
     private CustomCursor cursor;
+    private Sounds sound;
     private bool movingUp = false;
     private bool touching = false;
     private Vector3 target;
@@ -22,6 +23,7 @@ public class SliderKnob : MonoBehaviour
     private void Start()
     {
         cursor = GameObject.FindGameObjectWithTag("Manager").GetComponent<CustomCursor>();
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<Sounds>();
     }
 
     private void Update()
@@ -69,6 +71,7 @@ public class SliderKnob : MonoBehaviour
     private void OnMouseDown()
     {
         touching = true;
+        sound.PlayGrab();
     }
 
     private void OnMouseUp()

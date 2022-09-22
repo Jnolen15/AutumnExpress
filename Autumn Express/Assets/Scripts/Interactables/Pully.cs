@@ -16,6 +16,7 @@ public class Pully : MonoBehaviour
 
     // Private variables
     private CustomCursor cursor;
+    private Sounds sound;
     [SerializeField] private UnityEvent triggeredEvent;
     private bool pulled = false;
     private bool touching = false;
@@ -26,6 +27,7 @@ public class Pully : MonoBehaviour
     private void Start()
     {
         cursor = GameObject.FindGameObjectWithTag("Manager").GetComponent<CustomCursor>();
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<Sounds>();
 
         defaultPos = transform.localPosition;
         maxPullDist += transform.localPosition.y;
@@ -56,8 +58,9 @@ public class Pully : MonoBehaviour
 
         CalculateValue();
 
-        if (value > 95)
+        if (value > 90)
         {
+            touching = false;
             triggeredEvent.Invoke();
         }
     }
@@ -75,6 +78,7 @@ public class Pully : MonoBehaviour
     private void OnMouseDown()
     {
         touching = true;
+        sound.PlayGrab();
     }
 
     private void OnMouseUp()

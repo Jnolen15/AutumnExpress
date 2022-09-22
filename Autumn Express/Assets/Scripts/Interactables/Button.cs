@@ -13,6 +13,7 @@ public class Button : MonoBehaviour
 
     // Private variables
     private CustomCursor cursor;
+    private Sounds sound;
     [SerializeField] private UnityEvent triggeredEvent;
     private bool pressed = false;
     private float distance;
@@ -21,6 +22,7 @@ public class Button : MonoBehaviour
     private void Start()
     {
         cursor = GameObject.FindGameObjectWithTag("Manager").GetComponent<CustomCursor>();
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<Sounds>();
         defaultPos = contactPoint.transform.localPosition;
         distance = Vector3.Distance(defaultPos, target);
     }
@@ -45,8 +47,8 @@ public class Button : MonoBehaviour
 
         if (value > 95)
         {
-            triggeredEvent.Invoke();
             pressed = false;
+            triggeredEvent.Invoke();
         }
     }
 
@@ -63,6 +65,7 @@ public class Button : MonoBehaviour
     private void OnMouseDown()
     {
         pressed = true;
+        sound.PlayGrab();
     }
 
     private void OnMouseUp()

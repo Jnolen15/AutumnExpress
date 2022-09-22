@@ -18,6 +18,7 @@ public class Lever : MonoBehaviour
 
     // Private variables
     private CustomCursor cursor;
+    private Sounds sound;
     private bool movingUp = false;
     private bool touching = false;
     private Quaternion target;
@@ -25,6 +26,7 @@ public class Lever : MonoBehaviour
     private void Start()
     {
         cursor = GameObject.FindGameObjectWithTag("Manager").GetComponent<CustomCursor>();
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<Sounds>();
     }
 
     private void Update()
@@ -64,6 +66,11 @@ public class Lever : MonoBehaviour
     private void OnMouseExit()
     {
         cursor.SetNormal();
+    }
+
+    private void OnMouseDown()
+    {
+        sound.PlayGrab();
     }
 
     private void OnMouseUp()
