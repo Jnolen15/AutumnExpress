@@ -10,7 +10,7 @@ public class DialogueDisplayController : MonoBehaviour
     [Header("Important References")]
     public UIReferences uiReferences;
     public Text dlogTextBox;
-    public Image dlogBoundBox;
+    public Text dlogNameTagTextBox;
     public Image dlogHeadshotBox;
     public Animator dlogAnimator;
 
@@ -22,16 +22,6 @@ public class DialogueDisplayController : MonoBehaviour
     private bool isCurrentLineFinished = false;
     private IEnumerator currDlogCoroutine;
 
-    // enums
-    public enum Speakers
-    {
-        Deer,
-        Scarecrow,
-        Racoon,
-        Frog,
-        Snail
-    }
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +69,11 @@ public class DialogueDisplayController : MonoBehaviour
     {
         dlogHeadshotBox.color = new Color(1, 1, 1, 1);
         dlogHeadshotBox.sprite = portrait;
+    }
+
+    public void SetNameTagText(string name)
+    {
+        dlogNameTagTextBox.text = name;
     }
 
     public void CloseDialogueBox()

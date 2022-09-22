@@ -67,6 +67,7 @@ public class DialogueManager : MonoBehaviour
         currLineNumber = 0;
         dlogDisplay.OpenDialogueBox();
         dlogDisplay.SetSpeakerPortrait(currConvoData.characterPortraitArt);
+        dlogDisplay.SetNameTagText(currConvoData.passangerName);
 
         switch (stage)
         {
