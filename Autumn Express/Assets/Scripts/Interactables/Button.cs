@@ -12,6 +12,7 @@ public class Button : MonoBehaviour
     public float value;
 
     // Private variables
+    private CustomCursor cursor;
     [SerializeField] private UnityEvent triggeredEvent;
     private bool pressed = false;
     private float distance;
@@ -19,6 +20,7 @@ public class Button : MonoBehaviour
 
     private void Start()
     {
+        cursor = GameObject.FindGameObjectWithTag("Manager").GetComponent<CustomCursor>();
         defaultPos = contactPoint.transform.localPosition;
         distance = Vector3.Distance(defaultPos, target);
     }
@@ -46,6 +48,16 @@ public class Button : MonoBehaviour
             triggeredEvent.Invoke();
             pressed = false;
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        cursor.SetHover();
+    }
+
+    private void OnMouseExit()
+    {
+        cursor.SetNormal();
     }
 
     private void OnMouseDown()

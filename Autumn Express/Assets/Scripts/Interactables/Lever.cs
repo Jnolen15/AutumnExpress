@@ -17,9 +17,15 @@ public class Lever : MonoBehaviour
     public float value;
 
     // Private variables
+    private CustomCursor cursor;
     private bool movingUp = false;
     private bool touching = false;
     private Quaternion target;
+
+    private void Start()
+    {
+        cursor = GameObject.FindGameObjectWithTag("Manager").GetComponent<CustomCursor>();
+    }
 
     private void Update()
     {
@@ -48,6 +54,16 @@ public class Lever : MonoBehaviour
         }
 
         CalculateValue();
+    }
+
+    private void OnMouseEnter()
+    {
+        cursor.SetHover();
+    }
+
+    private void OnMouseExit()
+    {
+        cursor.SetNormal();
     }
 
     private void OnMouseUp()

@@ -15,6 +15,7 @@ public class Pully : MonoBehaviour
     public float value;
 
     // Private variables
+    private CustomCursor cursor;
     [SerializeField] private UnityEvent triggeredEvent;
     private bool pulled = false;
     private bool touching = false;
@@ -24,6 +25,8 @@ public class Pully : MonoBehaviour
 
     private void Start()
     {
+        cursor = GameObject.FindGameObjectWithTag("Manager").GetComponent<CustomCursor>();
+
         defaultPos = transform.localPosition;
         maxPullDist += transform.localPosition.y;
     }
@@ -57,6 +60,16 @@ public class Pully : MonoBehaviour
         {
             triggeredEvent.Invoke();
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        cursor.SetHover();
+    }
+
+    private void OnMouseExit()
+    {
+        cursor.SetNormal();
     }
 
     private void OnMouseDown()
