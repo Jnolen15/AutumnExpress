@@ -12,13 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899b0c6947bd5924896c2023b82462b7, type: 3}
   m_Name: Frog Dialogue
   m_EditorClassIdentifier: 
-  passangerName: 3
+  passangerName: Grandma Lily
   characterPortraitArt: {fileID: 21300000, guid: deef749e64204aa43bb93537d5523158,
     type: 3}
   enterDialogue:
-  - Ribbit *Gets on tram*
+  - "*Ribbit* \u2014 Goodness! Deary, you\u2019ve arrived just in the nick of time!"
+  - "My old bones were about to give out standing here! \rBut at last I can sit and
+    *ribbit* rest my flippers.\r"
+  - Onward to the pond, deary!
   mainDialogue:
-  - Ribbit *My son IS NOT Bill Clinton* *Winks*
+  - "Oh goodness, my vision\u2019s not what it used to be... but those autumn colors
+    outside are unmistakable! And oh-so delightful!"
+  - "All that orange and yellow\u2026 And when I think about it, that's perhaps my
+    favorite palette!"
+  - ' The colors of nature when it decides to rest... which is something I *ribbit*
+    ought to be doing at this age.'
+  - But alas, I'm still out and about!
+  - "In fact deary, the stop you're taking me to leads to a pond I\u2019ve been painting
+    at for *ribbit*...oh heavens\u2014...for years!"
+  - This time of year the pond is the most incredible sight...
+  - "...and I figured this time I\u2019d make some new paintings for my dear grandkids!
+    \n*intense ribbit*"
+  - (despite them being a real pain in my tuckus from time to time) those little
+    tadpoles have made me such a proud grandmother
   exitDialogue:
   - Ribbit *Gets off tram*
   missedStopDialogue:

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Passanger Dialogue", menuName = "Passanger Dialogue")]
 public class PassangerDialogue : ScriptableObject
 {
-    public DialogueDisplayController.Speakers passangerName;
+    public string passangerName;
     public Sprite characterPortraitArt;
     [TextArea]
     public string[] enterDialogue;

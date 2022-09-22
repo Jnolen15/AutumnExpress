@@ -28,9 +28,20 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && testMode)
+        if (testMode)
         {
-            StartConvoStage(ConvoStage.Enter);
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                StartConvoStage(ConvoStage.Enter);
+            }
+            else if (Input.GetKeyDown(KeyCode.U))
+            {
+                StartConvoStage(ConvoStage.Main);
+            }
+            else if (Input.GetKeyDown(KeyCode.I))
+            {
+                StartConvoStage(ConvoStage.Main);
+            }
         }
 
         if (dlogDisplay.getIsDialogueBoxOpen() && Input.GetKeyDown(KeyCode.Mouse0))
@@ -67,6 +78,7 @@ public class DialogueManager : MonoBehaviour
         currLineNumber = 0;
         dlogDisplay.OpenDialogueBox();
         dlogDisplay.SetSpeakerPortrait(currConvoData.characterPortraitArt);
+        dlogDisplay.SetNameTagText(currConvoData.passangerName);
 
         switch (stage)
         {
