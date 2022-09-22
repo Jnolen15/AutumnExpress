@@ -83,6 +83,7 @@ public class StopControler : MonoBehaviour
         {
             Destroy(currentStop);
             currentStop = null;
+            npcRemoved = false;
         }
     }
 }

@@ -16,12 +16,48 @@ MonoBehaviour:
   characterPortraitArt: {fileID: 21300000, guid: 8c6562b0654f8624a9e81ed0526940a2,
     type: 3}
   enterDialogue:
-  - Sarecrow Enter
+  - Howdy howdy mah good conductor!
+  - "Sure is a nice day out ain\u2019t it?"
   mainDialogue:
-  - Sarecrow Main Text
+  - "Ah sure am excited for mah new job! Ah do find myself to be quite good at scarecrowin\u2019."
+  - "Though do ah really have ta be SCARIN\u2019 the crows? After ah quit mah first
+    job at the farm, ah found crows ta be quite friendly!"
+  - "Ah ain\u2019t really got much people skills, so ah find talkin\u2019 ta these
+    birds ta be much easier!"
+  - "And they\u2019re such good listeners!"
+  - "Maybe ah can just BEFRIEND the birds! Ah can keep the birds distracted and away
+    from the crop by playin\u2019 GAMES with \u2018em!"
+  - "Or maybe they can help me patch up my old pair of overalls!... Or maybe even
+    help me make NEW \u2018ns!"
+  - "Oh, but then ah prolly wouldn\u2019 really be much of a scarecrow now would
+    ah!"
+  - "Ah wonder if they\u2019ll still pay me. Ah mean, ah\u2019ll still be distractin\u2019
+    \u2018em!"
+  - "Ah\u2019m just more of a FRIENDcrow then a SCAREcrow. Ha ha! Git it?"
+  - "(The crows on Straw\u2019s shoulders begin to squawk loudly. It sounds almost
+    like they\u2019re\u2026 laughing?)"
+  - See? Mike gits it!
+  - (Straw and Mike perform a high five.)
+  - (Mike squawks again)
+  - "Wha- ah already told you ah won\u2019t \u201Clend\u201D you any more of mah
+    straw!"
+  - (Mike opens their beak in surprise)
+  - "You know you never gave back that last piece of straw you \u201Cborrowed\u201D!"
+  - "Ava told me that they found it laying in Kai\u2019s nest last saturday!"
+  - "(Ava, the bird sitting on Straw\u2019s head, nods in agreement)"
+  - (Mike looks down sadly)
+  - "What\u2019re you all sad about? There\u2019s gonna be straw ALL AROUND THE FARM!
+    Go git some yerself!\r"
+  - (Straw seems to have gotten too into their conversation with Mike to continue
+    the conversation with you.)
   exitDialogue:
-  - Sarecrow Exit
+  - (As Straw begins to walk off the bus, a crow on their shoulder turns to you,
+    gives you a little squawk and waves a wing at you.)
+  - Oh right, Thankee kindly! Hope you have a swell day!
+  - Thanks fer remindin' me, little feller.
   missedStopDialogue:
-  - Sarecrow Missed Stop
+  - "(As you pass a stop by, a crow on Straw\u2019s shoulder begins squawking loudly.)"
+  - Oh right, that was mah stop. Ah'll just git off at the next one.
   nextStopDialogue:
-  - Sarecrow Next Stop
+  - Ah, that's mah new farm up there!
+  - If you can let me off at the next stop that'd be real nice.

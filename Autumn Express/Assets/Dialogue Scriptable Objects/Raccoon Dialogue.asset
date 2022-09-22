@@ -16,12 +16,58 @@ MonoBehaviour:
   characterPortraitArt: {fileID: 21300000, guid: 49d6a09f2f57d99419f4098fba6a9a42,
     type: 3}
   enterDialogue:
-  - Raccoon Enter
+  - (Boots walks into the bus, and stumbles on the top step.)
+  - (He catches himself while his cheeks turn red with embarrassment, gives you a
+    half-glance, and waves.)
+  - "H\u2026ello\u2026"
   mainDialogue:
-  - Raccoon Main
+  - (Boots pulls a math textbook out of his jacket and begins studying it.)
+  - (He furrows his brow, as if confused. He must be anxious about his first day
+    of high school.)
+  - (You remember that the last time he was on the bus, a few high schoolers were
+    joking around about how hard high school is.)
+  - '(They went on and on about how hard the homework is, how strict the teachers
+    are, and that there are tests every day.)
+
+'
+  - "(You knew the students weren\u2019t being serious, but it seems like Boots took
+    it to heart.)\n"
+  - "Hmm\u2026"
+  - '(He seems to be stuck on something. He begins to shuffle in his seat anxiously,
+    worried about how little he understands.)
+
+'
+  - '(He looks at you anxiously, as if contemplating if he should ask you for help
+    or not.)
+
+'
+  - "U-um\u2026 could you\u2026 help explain this\u2026 please\u2026?"
+  - "(You help walk him through the problem he was stuck on. Luckily, it wasn\u2019t
+    that complex, so you explained it as you drove.)"
+  - "Oh\u2026 I see\u2026 T-thanks\u2026!"
+  - (You smile and turn your focus back to the tracks, leaving Boots to continue
+    studying.)
+  - (Boots shakes his head to regain his concentration, and looks back at the book
+    with a renewed determination.)
+  - "\u2026"
+  - (After a while, you look in the mirror again to check on how his studying has
+    been going.)
+  - (Only to realize that he has fully fallen asleep, with the book lying open on
+    his stomach.)
+  - (You choose to let him sleep, but a divet on the tracks jolts him back awake.)
+  - (He looks around in surprise, slowly morphing into embarrassment as he covers
+    his face with the book, and begins studying.)
   exitDialogue:
-  - Raccoon Exit
+  - "Thanks\u2026"
+  - (Boots stares at the steps intently as he exits the bus, putting all their effort
+    into making sure they do not trip this time.)
   missedStopDialogue:
-  - Raccoon Missed Stop
+  - "Oh\u2026 I-"
+  - (Boots begins to get up and speak, but then decides against it, and sits back
+    down.)
+  - (Seems like you missed their stop. You should probably let them off at the next
+    one.)
   nextStopDialogue:
-  - Raccoon Next Stop
+  - "Um\u2026"
+  - "(Boots stays quiet, but the rustling of his jacket makes you realize they\u2019re
+    probably preparing to get off at the next stop)"

@@ -33,11 +33,13 @@ MonoBehaviour:
   - This time of year the pond is the most incredible sight...
   - "...and I figured this time I\u2019d make some new paintings for my dear grandkids!
     \n*intense ribbit*"
-  - (despite them being a real pain in my tuckus from time to time) those little
+  - Despite them being a real pain in my tuckus from time to time... those little
     tadpoles have made me such a proud grandmother
   exitDialogue:
   - Ribbit *Gets off tram*
   missedStopDialogue:
-  - Fuck you
+  - Oh dear *ribbit*- It appears you passed the pond.
+  - Just let me off at the next one dear, I'll walk back.
+  - I don't mind a calm stroll through the woods now and again! *ribbit*
   nextStopDialogue:
   - Ribbit *Implies that next stop is theirs*

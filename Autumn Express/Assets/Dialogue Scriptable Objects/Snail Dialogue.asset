@@ -16,12 +16,45 @@ MonoBehaviour:
   characterPortraitArt: {fileID: 21300000, guid: 03fe04456fc08c24facc2a1c3a77cd20,
     type: 3}
   enterDialogue:
-  - Snail Enter
+  - Oh hello! Could you take me to the nearest pumpkin patch?
+  - Oh, you don't know where one is? That's okay! I'll keep an eye out and let you
+    know when I see one.
   mainDialogue:
-  - Snail Main Text
+  - I need to find only the BEST pumpkin for my partner. They just LOVE the pumpkin
+    pie I make!
+  - "I usually save it for special occasions, and today is one of them! My boo\u2019s
+    going into HIBERNATION tonight!"
+  - "-Oh right, silly me! I should explain; they\u2019re a bear. They do this every
+    year!"
+  - I make a fresh pie every time they go into hibernation, so they can go to sleep
+    thinking of me!
+  - Though something tells me they go to sleep thinking more about the pie!
+  - (Pumpkin laughs for a while, but eventually falls silent.)
+  - "\u2026"
+  - (They look to the ground, suddenly downcast)
+  - "To be honest, though, it\u2019s hard sometimes to see them go\u2026 And it can
+    last for months, too!"
+  - "I mean, we all only live for so long, so it hurts to have to spend so much of
+    it without them\u2026 But I know they need it\u2026"
+  - "And when they wake up they\u2019re as happy to see me as I am, so it must be
+    hard for them to be away for so long too\u2026"
+  - (Pumpkin looks back up, with a slight smile on their face)
+  - "It\u2019s hard sometimes\u2026 but it\u2019s worth it. I love them, and they
+    love me."
+  - "So in the end, I\u2019d wait as long as I have to for them without a second
+    thought. Cause I'ts only a matter of time."
+  - "That\u2019s why I gotta make sure an even BETTER pie is waiting for them when
+    they wake up!"
   exitDialogue:
-  - Snail Exit
+  - "Thank you so much! Now to find that PERFECT pumpkin again\u2026"
+  - Ooh I can practically TASTE the pie I'm gonna make with it!
+  - But what if someone took it already!?
   missedStopDialogue:
-  - Snail Missed Stop
+  - NOOOO, MY PUMPKIN!
+  - It's okay, just drop me off at the next stop, please. I'll go back as fast as
+    I can!
+  - "\u2026Even though that's not too quick\u2026"
   nextStopDialogue:
-  - Snail Next
+  - Oh, that's a pumpkin patch over there, and I see a BIG ONE growing!
+  - Could you let me off at the next stop? I GOTTA get that one! It'll make the perfect
+    pie!
