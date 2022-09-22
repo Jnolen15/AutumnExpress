@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899b0c6947bd5924896c2023b82462b7, type: 3}
   m_Name: Deer Dialogue
   m_EditorClassIdentifier: 
-  passangerName: 0
+  passangerName: Brook
   characterPortraitArt: {fileID: 21300000, guid: b3676bbc23bfe3c4a8085e1c87d4d252,
     type: 3}
   enterDialogue:
