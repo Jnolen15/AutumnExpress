@@ -25236,7 +25236,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play
+  m_Text: Close
 --- !u!222 &1080696423
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38048,7 +38048,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play
+  m_Text: Close
 --- !u!222 &1482453818
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38071,12 +38071,12 @@ GameObject:
   - component: {fileID: 1497788588}
   - component: {fileID: 1497788587}
   m_Layer: 0
-  m_Name: PlayButton
+  m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1497788586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38095,7 +38095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -270}
+  m_AnchoredPosition: {x: 750, y: -460}
   m_SizeDelta: {x: 380, y: 131.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1497788587
@@ -38163,7 +38163,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1217562035}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: CloseCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41133,10 +41133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCList:
-  - {fileID: 3692926174772685189, guid: 31eb9b4070c51a2448bf463441461309, type: 3}
   - {fileID: 2910489101643735744, guid: f30f6f78b64978c459b8921aea7897c5, type: 3}
-  - {fileID: 6511399592761751636, guid: a94be7b2971ea94499ec9a0dc4befb75, type: 3}
+  - {fileID: 3692926174772685189, guid: 31eb9b4070c51a2448bf463441461309, type: 3}
   - {fileID: 5244722993077606690, guid: dab6818724789d04aa599aad6f2df7d3, type: 3}
+  - {fileID: 6511399592761751636, guid: a94be7b2971ea94499ec9a0dc4befb75, type: 3}
   - {fileID: 1504282235661095863, guid: ded92bfcddb880a4596dab1652198a67, type: 3}
   tramControl: {fileID: 1142797347}
   stopPrefab: {fileID: 8690392348069996746, guid: 824ffe7ae66030d449857a27cdbe8ad5,

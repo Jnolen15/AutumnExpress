@@ -46,6 +46,13 @@ public class StageManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public void CloseCredits()
+    {
+        Debug.Log("Game over, Endless driving");
+        EndMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void ShowTutorial()
     {
         MainMenu.SetActive(false);
