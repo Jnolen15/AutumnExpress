@@ -16,7 +16,7 @@ MonoBehaviour:
   characterPortraitArt: {fileID: 21300000, guid: deef749e64204aa43bb93537d5523158,
     type: 3}
   enterDialogue:
-  - "*Ribbit* \u2014 Goodness! Deary, you\u2019ve arrived just in the nick of time!"
+  - "*Ribbit* Goodness! Deary, you\u2019ve arrived just in the nick of time!"
   - "My old bones were about to give out standing here! \rBut at last I can sit and
     *ribbit* rest my flippers.\r"
   - Onward to the pond, deary!
@@ -29,7 +29,7 @@ MonoBehaviour:
     ought to be doing at this age.'
   - But alas, I'm still out and about!
   - "In fact deary, the stop you're taking me to leads to a pond I\u2019ve been painting
-    at for *ribbit*...oh heavens\u2014...for years!"
+    at for *ribbit*...oh heavens... for years!"
   - This time of year the pond is the most incredible sight...
   - "...and I figured this time I\u2019d make some new paintings for my dear grandkids!
     \n*ribbit*"
@@ -39,13 +39,13 @@ MonoBehaviour:
   - Even if I have to hobble these old bones down to the pond in order to paint them!
   - "But it\u2019s really no bother. It\u2019s a nice journey\u2026 and the tram
     you\u2019re driving for us makes it so much easier! *ribbit*"
-  - "\u2014heavens! My allergies must be *ribbit* \u2014acting up. Excuse me, deary."
+  - Heavens! My allergies must be *ribbit* acting up. Excuse me, deary.
   exitDialogue:
   - Why thank you deary *ribbit*.
   - Let me paint you a little something to hang in this tram of yours. It's the least
     I could do to repay your *ribbit* kindness.
   missedStopDialogue:
-  - "*ribbit*\u2014pardon me, deary, but I believe you've passed my pond *ribbit*"
+  - '*ribbit* Pardon me, deary, but I believe you''ve passed my pond *ribbit*'
   - "Not to worry. I\u2019ll just get off at the next stop. These old flippers could
     use some exercise. And a calm stroll can be nice!"
   nextStopDialogue:

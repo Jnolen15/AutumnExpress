@@ -16,31 +16,30 @@ MonoBehaviour:
   characterPortraitArt: {fileID: 21300000, guid: b3676bbc23bfe3c4a8085e1c87d4d252,
     type: 3}
   enterDialogue:
-  - 'Hi hi! '
-  - "Omg I\u2019m so excited. Do you get a lot of students on this tram?\u2014wait,
-    don\u2019t answer that I\u2019m distracting you. Sorry, don\u2019t mind me!"
+  - Hi hi!
+  - "Omg I\u2019m so excited. Do you get a lot of students on this tram? Wait, don\u2019t
+    answer that I\u2019m distracting you. Don\u2019t mind me!"
   mainDialogue:
   - (Brook quickly taps their hooves in a slightly annoying but mostly endearing
     fashion)
   - "Oh! Oops! I\u2019m being too loud. Sorry. Today has just gone so well! I\u2019m
     so excited!\r"
-  - "Since school started again, our D&D club\u2014oh sorry. Our Deer & Dungeons
-    tabletop gaming club\u2014is starting up again!"
+  - Since school started again, our D&D club, oh sorry. Our Deer & Dungeons tabletop
+    gaming club, is starting up again!
   - (The tapping resumes)
-  - "And during our meeting today\u2014which is actually what I\u2019m coming from.
-    why did I clarify that?\u2014we picked DMs! "
-  - "Oh sorry: Deer Managers. The players who run the game\u2014And I get to be one
-    this year! It\u2019s so great!"
+  - "And during our meeting today which is actually what I\u2019m coming from. Why
+    did I clarify that? Anyways, we picked DMs! "
+  - "Oh sorry: Deer Managers. The players who run the game, and I get to be one this
+    year! It\u2019s so great!"
   - "Omg I just love this feeling. Fall is back\u2026 school is in session again\u2026 "
-  - "\u2014which means all my friends from all over the woods get to see each other
-    again."
+  - Which means all my friends from all over the woods get to see each other again.
   - "Summer\u2019s nice and all, but getting to take this tram to and from school
-    to see all those nerds\u2014good nerds\u2014like me!\u2014is so good."
+    to see all those nerds, good nerds like me, is so good."
   - (The tapping suddenly stops)
   - "OMG I need to come up with some material for the D&D campaign! I should\u2019ve
     prepped over the summer where\u2019s my notebook"
-  - "I coulda sworn I had a pen ooh what about a magical pen that the heroes find
-    in a mystical wagon oh write that d\u2014"
+  - I coulda sworn I had a pen ooh what about a magical pen that the heroes find
+    in a mystical wagon oh write that down...
   - (Brook turns from you, lost in a mysterious world of their own creation, one
     that their school friends will surely enjoy too)
   exitDialogue:
@@ -53,10 +52,11 @@ MonoBehaviour:
   - '(The notetaking stops again)
 
 '
-  - "Uh\u2026oh. That was my stop we just passed\u2014wait ignore me I\u2019ll just
-    get off at the next one!\n"
-  - A stroll will give me more time to come up with NPCs! (Non-Playable-woodland-Creatures)
+  - "Uh\u2026oh. That was my stop we just passed, wait ignore me I\u2019ll just get
+    off at the next one!\n"
+  - A stroll will give me more time to come up with NPCs! (Non Playable woodland
+    Creatures)
   nextStopDialogue:
   - (The notetaking stops. Briefly.)
-  - "Oh my stop is coming up!!\u2014Hm\u2026what if an ogre \u201Cstopped\u201D the
-    party in their tracks?\u2014I should pack up."
+  - "Oh my stop is coming up!! Hm\u2026what if an ogre \u201Cstopped\u201D the party
+    in their tracks? I should pack up."
