@@ -16,13 +16,33 @@ MonoBehaviour:
   characterPortraitArt: {fileID: 21300000, guid: b3676bbc23bfe3c4a8085e1c87d4d252,
     type: 3}
   enterDialogue:
-  - Ayo yo what up. its me. the Brook-meister. Nice to meet you conductor
-  - Even tho I'm stepping onto the tram rn, I'm gonna keep talking to test if multiple
-    lines work on the dlog menu
+  - 'Hi hi! '
+  - "Omg I\u2019m so excited. Do you get a lot of students on this tram?\u2014wait
+    don\u2019t answer that I\u2019m distracting you. Sorry don\u2019t mind me!"
   mainDialogue:
-  - I'm talking to you as a way to show that the main dialouge system works.
-  - Hopefully that's the case. Otherwise this would get really akward.
-  - Okay that's it lol. Imma stop talking now. At least until I'm at the last stop
+  - (Brook quickly taps their hooves in a slightly annoying but mostly endearing
+    fashion)
+  - "Oh! Oops! I\u2019m being too loud. Sorry. Today has just gone so well! I\u2019m
+    so excited!\r"
+  - "Since school started again, our D&D club\u2014oh sorry. Our Deer & Dungeons
+    tabletop game club\u2014is starting up again!"
+  - (The tapping resumes)
+  - "And during our meeting today\u2014which is actually what I\u2019m coming from.
+    why did I clarify that?\u2014we picked DMs! "
+  - "Oh sorry: Deer Managers. The players who run the game.\u2014And I get to be
+    one this year! It\u2019s so great!"
+  - "Omg I just love this feeling. Fall is back\u2026 school is in session again\u2026 "
+  - "\u2014which means all my friends from all over the woods get to see each other
+    again."
+  - "Summer\u2019s nice and all, but getting to take this tram to and from school
+    to see all those nerds\u2014good nerds\u2014like me!\u2014is so good."
+  - (The tapping suddenly stops)
+  - "OMG I need to come up with some material for the D&D campaign! I should\u2019ve
+    prepped over the summer where\u2019s my notebook"
+  - "I coulda sworn I had a pen ooh what about a magical pen that the heroes find
+    in a mystical wagon oh write that d\u2014"
+  - (Brook turns from you, lost in a mysterious world of their own creation, one
+    that their school friends will surely enjoy too)
   exitDialogue:
   - Well that's my stop I guess. I like the cut of your jib dude.
   - Yeah I know that's a weird phrase to use. Get off my back. See ya.
