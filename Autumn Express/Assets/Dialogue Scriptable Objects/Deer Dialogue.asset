@@ -17,8 +17,8 @@ MonoBehaviour:
     type: 3}
   enterDialogue:
   - 'Hi hi! '
-  - "Omg I\u2019m so excited. Do you get a lot of students on this tram?\u2014wait
-    don\u2019t answer that I\u2019m distracting you. Sorry don\u2019t mind me!"
+  - "Omg I\u2019m so excited. Do you get a lot of students on this tram?\u2014wait,
+    don\u2019t answer that I\u2019m distracting you. Sorry, don\u2019t mind me!"
   mainDialogue:
   - (Brook quickly taps their hooves in a slightly annoying but mostly endearing
     fashion)

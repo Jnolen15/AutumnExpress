@@ -37,13 +37,13 @@ MonoBehaviour:
   - "those little tadpoles have made me such a proud grandmother\u2026 which is why
     I want to paint them some gifts"
   - Even if I have to hobble these old bones down to the pond in order to paint them!
-  - "But it\u2019s really no bother. It\u2019s a nice a journey\u2026 and the tram
+  - "But it\u2019s really no bother. It\u2019s a nice journey\u2026 and the tram
     you\u2019re driving for us makes it so much easier! *ribbit*"
   - "\u2014heavens! My allergies must be *ribbit* \u2014acting up. Excuse me, deary."
   exitDialogue:
   - Why thank you deary *ribbit*.
   - Let me paint you a little something to hang in this tram of yours. It's the least
-    I could do to repay your *ribbit* kidnness
+    I could do to repay your *ribbit* kindness.
   missedStopDialogue:
   - "*ribbit*\u2014pardon me, deary, but I believe you've passed my pond *ribbit*"
   - "Not to worry. I\u2019ll just get off at the next stop. These old flippers could
