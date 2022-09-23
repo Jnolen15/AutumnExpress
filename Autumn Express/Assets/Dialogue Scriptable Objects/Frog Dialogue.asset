@@ -41,7 +41,9 @@ MonoBehaviour:
     you\u2019re driving for us makes it so much easier! *ribbit*"
   - "\u2014heavens! My allergies must be *ribbit* \u2014acting up. Excuse me, deary."
   exitDialogue:
-  - Ribbit *Gets off tram*
+  - Why thank you deary *ribbit*.
+  - Let me paint you a little something to hang in this tram of yours. It's the least
+    I could do to repay your *ribbit* kidnness
   missedStopDialogue:
   - "*ribbit*\u2014pardon me, deary, but I believe you've passed my pond *ribbit*"
   - "Not to worry. I\u2019ll just get off at the next stop. These old flippers could
