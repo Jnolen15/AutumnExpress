@@ -40,7 +40,15 @@ public class DialogueManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.I))
             {
-                StartConvoStage(ConvoStage.Main);
+                StartConvoStage(ConvoStage.Exit);
+            }
+            else if (Input.GetKeyDown(KeyCode.O))
+            {
+                StartConvoStage(ConvoStage.MissedStop);
+            }
+            else if (Input.GetKeyDown(KeyCode.P))
+            {
+                StartConvoStage(ConvoStage.NextStop);
             }
         }
 
