@@ -32,14 +32,20 @@ MonoBehaviour:
     at for *ribbit*...oh heavens\u2014...for years!"
   - This time of year the pond is the most incredible sight...
   - "...and I figured this time I\u2019d make some new paintings for my dear grandkids!
-    \n*intense ribbit*"
-  - Despite them being a real pain in my tuckus from time to time... those little
-    tadpoles have made me such a proud grandmother
+    \n*ribbit*"
+  - Despite them being a real pain in my tuckus from time to time... *ribbit intensifies*
+  - "those little tadpoles have made me such a proud grandmother\u2026 which is why
+    I want to paint them some gifts"
+  - Even if I have to hobble these old bones down to the pond in order to paint them!
+  - "But it\u2019s really no bother. It\u2019s a nice a journey\u2026 and the tram
+    you\u2019re driving for us makes it so much easier! *ribbit*"
+  - "\u2014heavens! My allergies must be *ribbit* \u2014acting up. Excuse me, deary."
   exitDialogue:
   - Ribbit *Gets off tram*
   missedStopDialogue:
-  - Oh dear *ribbit*- It appears you passed the pond.
-  - Just let me off at the next one dear, I'll walk back.
-  - I don't mind a calm stroll through the woods now and again! *ribbit*
+  - "*ribbit*\u2014pardon me, deary, but I believe you've passed my pond *ribbit*"
+  - "Not to worry. I\u2019ll just get off at the next stop. These old flippers could
+    use some exercise. And a calm stroll can be nice!"
   nextStopDialogue:
-  - Ribbit *Implies that next stop is theirs*
+  - Oh look, deary! *ribbit* I can see my pond coming up! The next stop should be
+    mine.
